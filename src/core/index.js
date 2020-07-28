@@ -1,21 +1,20 @@
 (function () {
   'use strict';
 
+  var layoutUtilities = require("./layout-utilities");
+  let { Options } = require('./common');
+
   // registers the extension on a cytoscape lib ref
+  /**
+   * @param {typeof globalThis.cytoscape} cytoscape
+   */
   var register = function (cytoscape) {
 
     if (!cytoscape) {
       return;
     } // can't register if cytoscape unspecified
 
-    var options = {
-      idealEdgeLength: 50,
-      offset: 20,
-      desiredAspectRatio: 1,
-      polyominoGridSizeFactor: 1,
-      utilityFunction: 1,  // Maximize adjusted Fullness   2: maximizes weighted function of fullness and aspect ratio
-      componentSpacing: 30
-    };
+    var options = Options.getDefault();
 
 
     /*  function extend(defaults, options) {
@@ -46,7 +45,6 @@
  
        return obj;
       }; */
-    var layoutUtilities = require("./layout-utilities");
 
     cytoscape('core', 'layoutUtilities', function (opts) {
       var cy = this;

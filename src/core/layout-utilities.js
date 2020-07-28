@@ -3,6 +3,11 @@ var generalUtils = require('./general-utils.js');
 var polyominoPacking = require('./polyomino-packing');
 const { Point, Polyomino } = require('./polyomino-packing');
 const { getCenter } = require('./general-utils.js');
+
+/**
+ * @param { * } cy 
+ * @param { import('./common').Options } options 
+ */
 var layoutUtilities = function (cy, options) {
 
   /*  var defaults = {
@@ -30,6 +35,7 @@ var layoutUtilities = function (cy, options) {
    options = extend(defaults, options); */
   var instance = {};
 
+  
   instance.placeHiddenNodes = function (mainEles) {
     mainEles.forEach(function (mainEle) {
       var hiddenEles = mainEle.neighborhood().nodes(":hidden");
@@ -364,7 +370,7 @@ var layoutUtilities = function (cy, options) {
   }
 
   /**
-   * @param { any[] } components 
+   * @param { import('./common').Component[] } components 
    */
   instance.packComponents = function (components) {    
     let currentCenter = generalUtils.getCenter(components);

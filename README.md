@@ -155,16 +155,19 @@ resulting sample output:
 
 ## Default Options
 
-```
-      // Placing new / hidden nodes
-      idealEdgeLength: 50,
-      offset: 20,
-      
-      // Packing
-      desiredAspectRatio: 1,
-      polyominoGridSizeFactor: 1,
-      utilityFunction: 1  // maximize adjusted Fullness   2: maximizes weighted function of fullness and aspect ratio
-      componentSpacing: 30 // use to increase spacing between components in pixels
+```js
+{
+  // Placing new / hidden nodes
+  idealEdgeLength = 50,
+  offset = 20,
+  
+  // Packing
+  desiredAspectRatio = 1,
+  polyominoGridSizeFactor = 1,
+  utilityFunction = 1,  // maximize adjusted Fullness   2: maximizes weighted function of fullness and aspect ratio
+  componentSpacing = 30, // use to increase spacing between components in pixels
+  randomize: true, // ignore the intial positions of the components. Set it to false to make packing incrementally
+}
 
 ```
 

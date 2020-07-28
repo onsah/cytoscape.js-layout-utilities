@@ -24,13 +24,13 @@ let config = {
   },
   externals: PROD ? Object.keys( pkg.dependencies || {} ) : [],
   plugins: MIN ? [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: false,
-      }
-    })
-  ] : []
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          drop_console: false,
+        }
+      })
+    ] : []
 };
 
 module.exports = config;
