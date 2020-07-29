@@ -37,7 +37,7 @@
  *  x2: number;
  *  y1: number;
  *  y2: number;
- * }} BoundingRectangle
+ * }} IBoundingRectangle
  * 
  * @typedef {{
  *  x: number;

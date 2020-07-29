@@ -158,7 +158,7 @@ function nonIncrementalPack(components, options) {
  * @param { import('./typedef').Options } options 
  */
 function incrementalPack(components, options) {
-    /* let gridStep = calculateGridStep(components, options);
+    let gridStep = calculateGridStep(components, options);
 
     if (options.componentSpacing > 0) {
       let spacingAmount = options.componentSpacing;
@@ -176,8 +176,8 @@ function incrementalPack(components, options) {
     );
 
     for (let polyomino of polyominos) {
-
-    } */
+      
+    }
 
     throw new Error('Not Implemented');
 }

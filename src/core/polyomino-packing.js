@@ -122,6 +122,22 @@ export class Polyomino {
         return this.y1 + this.height;
     }
 
+    get stepX1() {
+        return Math.floor(this.x1);
+    }
+
+    get stepY1() {
+        return Math.floor(this.y1);
+    }
+
+    get stepX2() {
+        return Math.ceil(this.x2);
+    }
+
+    get stepY2() {
+        return Math.ceil(this.y2);
+    }
+
     /**
      * returns the center relative to location inside the grid
      */
@@ -185,6 +201,17 @@ export class BoundingRectangle {
             (this.x2 - this.x1) / 2,
             (this.y2 - this.y1) / 2
         );
+    }
+
+    /**
+     * Expands bounds of `this` so that it contains 'other'
+     * @param { import('./typedef').IBoundingRectangle } other 
+     */
+    include(other) {
+        this.x1 = Math.min(this.x1, other.x1);
+        this.y1 = Math.min(this.y1, other.y1);
+        this.x2 = Math.max(this.x2, other.x2);
+        this.y2 = Math.max(this.y2, other.y2);
     }
 }
 
@@ -345,7 +372,7 @@ export class Grid {
     }
 
     /**
-     * a function to place a given polyomino in the cell i j on the grid
+     * a function to place the center of the polyomino in the cell i j inside the grid
      * @param { Polyomino } polyomino 
      * @param { number } i 
      * @param { number } j 
