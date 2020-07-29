@@ -54,7 +54,11 @@
        return obj;
       }; */
 
-    cytoscape('core', 'layoutUtilities', function (opts) {
+    cytoscape('core', 'layoutUtilities', 
+    /**
+     * @param { import("./typedef").Options | string } opts 
+     */
+    function (opts) {
       var cy = this;
 
       // If 'get' is given as the param then return the extension instance

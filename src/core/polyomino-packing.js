@@ -66,9 +66,9 @@ export class Polyomino {
 
             //all cells between topleft cell and bottom right cell should be occupied
             for (var i = topLeftX; i <= bottomRightX; i++) {
-            for (var j = topLeftY; j <= bottomRightY; j++) {
-                this.grid[i][j] = true;
-            }
+                for (var j = topLeftY; j <= bottomRightY; j++) {
+                    this.grid[i][j] = true;
+                }
             }
         });
 
@@ -237,10 +237,15 @@ export class Grid {
     }
 
     /**
-     * function given a list of cells it returns the direct unvisited unoccupied neighboring cells 
+     * function given a list of cells it returns the direct unvisited unoccupied neighboring cells
+     * @param { import('./typedef').IPoint[] } cells
+     * @param { number } level
+     * @returns { import('./typedef').IPoint[] }
      */
     getDirectNeighbors(cells, level) {
+        /** @type { import('./typedef').IPoint[] } */
         var resultPoints = [];
+
         if (cells.length == 0) {
             for (var i = 0; i < this.stepWidth; i++) {
                 for (var j = 0; j < this.stepHeight; j++) {
@@ -262,9 +267,9 @@ export class Grid {
                 endIndex = resultPoints.length - 1;
             }
         } else {
-            cells.forEach(function (cell) {
+            cells.forEach((cell) => {
                 resultPoints = resultPoints.concat(this.getCellNeighbors(cell.x, cell.y));
-            }.bind(this));
+            });
         }
         return resultPoints;
     }
@@ -273,8 +278,10 @@ export class Grid {
      * given a cell at locatoin i,j get the unvistied unoccupied neighboring cell
      * @param { number } i
      * @param { number } j
+     * @returns { import('./typedef').IPoint[] }
      */
     getCellNeighbors(i, j) {
+        /** @type { import('./typedef').IPoint[] } */
         var resultPoints = [];
         //check all the 8 surrounding cells 
         if (i - 1 >= 0) {

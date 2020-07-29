@@ -18,19 +18,31 @@
  *  y: number;
  *  width: number;
  *  height: number;
- * }} Node
+ * }} INode
  * 
  * @typedef {{
  *  startX: number;
  *  startY: number;
  *  endX: number;
  *  endY: number;
- * }} Edge
+ * }} IEdge
  * 
  * @typedef {{
- *  nodes: Node[];
- *  edges: Edge[];
+ *  nodes: INode[];
+ *  edges: IEdge[];
  * }} Component
+ * 
+ * @typedef {{
+ *  x1: number;
+ *  x2: number;
+ *  y1: number;
+ *  y2: number;
+ * }} BoundingRectangle
+ * 
+ * @typedef {{
+ *  x: number;
+ *  y: number;
+ * }} IPoint
  */
 
 // To make the file module

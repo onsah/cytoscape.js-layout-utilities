@@ -1,5 +1,9 @@
 import { getCenter, getBoundingRectangle } from './general-utils';
-import { Polyomino, Grid } from './polyomino-packing';
+import { Polyomino, Grid, BoundingRectangle } from './polyomino-packing';
+
+/**
+ * This module is created so that parts of packing operations can be used in both of the packing methods
+ */
 
 /**
  * 
@@ -28,73 +32,8 @@ function nonIncrementalPack(components, options) {
       let spacingAmount = options.componentSpacing;
       addSpacing(components, spacingAmount);
     }
-    var gridWidth = 0, gridHeight = 0;
-    /** @type { Polyomino[] } */
-    var polyominos = [];
-    var globalX1 = Number.MAX_VALUE, globalX2 = -Number.MAX_VALUE, globalY1 = Number.MAX_VALUE, globalY2 = -Number.MAX_VALUE;
 
-    //create polyominos for components
-    components.forEach((component, index) => {
-      let { x1, x2, y1, y2 } = getBoundingRectangle(component);
-
-      if (x1 < globalX1) globalX1 = x1;
-      if (x2 > globalX2) globalX2 = x2;
-      if (y1 < globalY1) globalY1 = y1;
-      if (y2 > globalY2) globalY2 = y2;
-
-      let componentWidth = x2 - x1;
-      let componentHeight = y2 - y1;
-      gridWidth += componentWidth;
-      gridHeight += componentHeight;
-
-      var componentPolyomino = new Polyomino(x1, y1, componentWidth, componentHeight, gridStep, index,
-        { component, boundingRect: { x1, x2, y1, y2 } });
-
-      /* //fill nodes to polyomino cells
-      component.nodes.forEach(function (node) {
-        //top left cell of a node
-        var topLeftX = Math.floor((node.x - x1) / gridStep);
-        var topLeftY = Math.floor((node.y - y1) / gridStep);
-
-        //bottom right cell of a node
-        var bottomRightX = Math.floor((node.x + node.width - x1) / gridStep);
-        var bottomRightY = Math.floor((node.y + node.height - y1) / gridStep);
-
-        //all cells between topleft cell and bottom right cell should be occupied
-        for (var i = topLeftX; i <= bottomRightX; i++) {
-          for (var j = topLeftY; j <= bottomRightY; j++) {
-            componentPolyomino.grid[i][j] = true;
-          }
-        }
-      });
-
-      //fill cells where edges pass 
-      component.edges.forEach(function (edge) {
-        var p0 = {}, p1 = {};
-        p0.x = (edge.startX - x1) / gridStep;
-        p0.y = (edge.startY - y1) / gridStep;
-        p1.x = (edge.endX - x1) / gridStep;
-        p1.y = (edge.endY - y1) / gridStep;
-        //for every edge calculate the super cover 
-        var points = generalUtils.LineSuperCover(p0, p1);
-        points.forEach(function (point) {
-          var indexX = Math.floor(point.x);
-          var indexY = Math.floor(point.y);
-          if (indexX >= 0 && indexX < componentPolyomino.stepWidth && indexY >= 0 && indexY < componentPolyomino.stepHeight) {
-            componentPolyomino.grid[Math.floor(point.x)][Math.floor(point.y)] = true;
-          }
-        });
-      });
-
-      //update number of occupied cells in polyomino
-      for (var i = 0; i < componentPolyomino.stepWidth; i++) {
-        for (var j = 0; j < componentPolyomino.stepHeight; j++) {
-          if (componentPolyomino.grid[i][j]) componentPolyomino.numberOfOccupiredCells++;
-
-        }
-      } */
-      polyominos.push(componentPolyomino);
-    });
+    let { polyominos, gridWidth, gridHeight } = createPolyominos(components, gridStep);
 
     //order plyominos non-increasing order
     polyominos.sort(function (a, b) {
@@ -126,8 +65,10 @@ function nonIncrementalPack(components, options) {
       var weigthFullnessAspectRatio = 0;
       var minAspectRatioDiff = 1000000;
       var placementFound = false;
+      /** @type { import('./typedef').IPoint[] } */
       var cells = [];
-      var resultLocation = {};
+      /** @type { import('./typedef').IPoint } */
+      var resultLocation = { x: 0, y: 0 };
       while (!placementFound) {
 
         cells = mainGrid.getDirectNeighbors(cells, Math.ceil(Math.max(polyominos[i].stepWidth, polyominos[i].stepHeight) / 2));
@@ -183,48 +124,30 @@ function nonIncrementalPack(components, options) {
         return 0;
       }
     });
-
-    var packingResult = {
-      shifts: []
-    };
-
-    /*  var shiftX = componentsCenter.x - ((mainGrid.center.x - mainGrid.occupiedRectangle.x1)*gridStep); 
-    var shiftY = componentsCenter.y - ((mainGrid.center.y - mainGrid.occupiedRectangle.y1)*gridStep); 
-    var occupiedCenterX = Math.floor((mainGrid.occupiedRectangle.x1 + mainGrid.occupiedRectangle.x2)/2);
-    var occupiedCenterY = Math.floor((mainGrid.occupiedRectangle.y1 + mainGrid.occupiedRectangle.y2)/2); */
+    
+    /** @type {{ dx: number, dy: number }[]} */
+    let shifts = [];
     
     polyominos.forEach(function (pol) {
-      var dx = (pol.location.x - pol.center.x - mainGrid.occupiedRectangle.x1) * gridStep - pol.x1;//+shiftX;
-      var dy = (pol.location.y - pol.center.y - mainGrid.occupiedRectangle.y1) * gridStep - pol.y1;// + shiftY;
-      //var dx = (pol.location.x -occupiedCenterX) * gridStep + componentsCenter.x- pol.leftMostCoord;//+shiftX;
-      //var dy = (pol.location.y -occupiedCenterY) * gridStep + componentsCenter.y-pol.topMostCoord;// + shiftY;
-      packingResult.shifts.push({ dx: dx, dy: dy });
+      var dx = (pol.location.x - pol.center.x - mainGrid.occupiedRectangle.x1) * gridStep - pol.x1;
+      var dy = (pol.location.y - pol.center.y - mainGrid.occupiedRectangle.y1) * gridStep - pol.y1;
+      shifts.push({ dx: dx, dy: dy });
     });
 
     // Calculate what would be the center of the packed layout
-    let packingCenter = calculatePackingCenter(components, packingResult.shifts);
+    let packingCenter = calculatePackingCenter(components, shifts);
     // Calculate the neccessary  additional shift to re-center
     let centerShift = packingCenter.diff(currentCenter);
 
     // Add the center shift
-    for (let shift of packingResult.shifts) {
+    for (let shift of shifts) {
       shift.dx += centerShift.x;
       shift.dy += centerShift.y;
     }
 
-    packingResult.aspectRatio = Math.round(((mainGrid.occupiedRectangle.x2 - mainGrid.occupiedRectangle.x1 + 1) / (mainGrid.occupiedRectangle.y2 - mainGrid.occupiedRectangle.y1 + 1)) * 1e2) / 1e2;
-    packingResult.fullness = Math.round(((mainGrid.numberOfOccupiredCells / ((mainGrid.occupiedRectangle.x2 - mainGrid.occupiedRectangle.x1 + 1) * (mainGrid.occupiedRectangle.y2 - mainGrid.occupiedRectangle.y1 + 1))) * 100) * 1e2) / 1e2;
+    let stats = calculateStatistics(mainGrid, options.desiredAspectRatio);
 
-    if (packingResult.aspectRatio > options.desiredAspectRatio) {
-      var mainGridWidth = mainGrid.occupiedRectangle.x2 - mainGrid.occupiedRectangle.x1 + 1;
-      packingResult.adjustedFullness = Math.round((((mainGrid.numberOfOccupiredCells) / (mainGridWidth * (mainGridWidth / options.desiredAspectRatio)) * 100)) * 1e2) / 1e2;
-      // height = width / desiredAspectRatio;
-    } else {
-      var mainGridheight = mainGrid.occupiedRectangle.y2 - mainGrid.occupiedRectangle.y1 + 1;
-      packingResult.adjustedFullness = Math.round((((mainGrid.numberOfOccupiredCells) / ((mainGridheight * options.desiredAspectRatio) * mainGridheight)) * 100) * 1e2) / 1e2;
-      // width = height * desiredAspectRatio;
-    }
-
+    let packingResult = { shifts, ...stats };
 
     return packingResult;
 }
@@ -235,13 +158,34 @@ function nonIncrementalPack(components, options) {
  * @param { import('./typedef').Options } options 
  */
 function incrementalPack(components, options) {
+    /* let gridStep = calculateGridStep(components, options);
+
+    if (options.componentSpacing > 0) {
+      let spacingAmount = options.componentSpacing;
+      addSpacing(components, spacingAmount);
+    }
+
+    let { polyominos } = createPolyominos(components, gridStep);
+
+    // bounding rectangle by their current positions
+    let localBoundingRectangle = new BoundingRectangle(
+      Number.MAX_VALUE,
+      Number.MAX_VALUE,
+      -Number.MAX_VALUE,
+      -Number.MAX_VALUE
+    );
+
+    for (let polyomino of polyominos) {
+
+    } */
+
     throw new Error('Not Implemented');
 }
 
 // Below there are functions used in both methods
 
 /**
- * @param { { nodes: any[] }[] } components
+ * @param { import('./typedef').Component[] } components
  * @param { { dx: number, dy: number }[] } shifts
  */
 function calculatePackingCenter(components, shifts) {
@@ -289,4 +233,61 @@ function addSpacing(components, spacingAmount) {
             node.height = node.height + (2 * spacingAmount);
         }
     }
+}
+
+/**
+ * Creates the polyominos and the calculate minimum rectangle that can cover all of them
+ * @param { import('./typedef').Component[] } components
+ * @param { number } gridStep
+ * @returns {{ polyominos: Polyomino[], gridWidth: number, gridHeight: number, }}
+ */
+function createPolyominos(components, gridStep) {
+    let polyominos = [];
+    let gridWidth = 0, gridHeight = 0;
+
+    for (let [index, component] of components.entries()) {
+        let { x1, x2, y1, y2 } = getBoundingRectangle(component);
+
+        let componentWidth = x2 - x1;
+        let componentHeight = y2 - y1;
+
+        gridWidth += componentWidth;
+        gridHeight += componentHeight;
+
+        let componentPolyomino = new Polyomino(
+          x1, y1, 
+          componentWidth, 
+          componentHeight, 
+          gridStep, index,
+          { component, boundingRect: { x1, x2, y1, y2 } }
+        );
+
+        polyominos.push(componentPolyomino);
+    }
+
+    return { polyominos, gridWidth, gridHeight };
+}
+
+/**
+ * Calculates aspecRatio, fullness and adjustedFullness
+ * @param { Grid } mainGrid 
+ * @param { number } desiredAspectRatio 
+ */
+function calculateStatistics(mainGrid, desiredAspectRatio) {
+    let aspectRatio = Math.round(((mainGrid.occupiedRectangle.x2 - mainGrid.occupiedRectangle.x1 + 1) / (mainGrid.occupiedRectangle.y2 - mainGrid.occupiedRectangle.y1 + 1)) * 1e2) / 1e2;
+    let fullness = Math.round(((mainGrid.numberOfOccupiredCells / ((mainGrid.occupiedRectangle.x2 - mainGrid.occupiedRectangle.x1 + 1) * (mainGrid.occupiedRectangle.y2 - mainGrid.occupiedRectangle.y1 + 1))) * 100) * 1e2) / 1e2;
+
+    let adjustedFullness;
+
+    if (aspectRatio > desiredAspectRatio) {
+      var mainGridWidth = mainGrid.occupiedRectangle.x2 - mainGrid.occupiedRectangle.x1 + 1;
+      adjustedFullness = Math.round((((mainGrid.numberOfOccupiredCells) / (mainGridWidth * (mainGridWidth / desiredAspectRatio)) * 100)) * 1e2) / 1e2;
+      // height = width / desiredAspectRatio;
+    } else {
+      var mainGridheight = mainGrid.occupiedRectangle.y2 - mainGrid.occupiedRectangle.y1 + 1;
+      adjustedFullness = Math.round((((mainGrid.numberOfOccupiredCells) / ((mainGridheight * desiredAspectRatio) * mainGridheight)) * 100) * 1e2) / 1e2;
+      // width = height * desiredAspectRatio;
+    }
+
+    return { aspectRatio, fullness, adjustedFullness };
 }

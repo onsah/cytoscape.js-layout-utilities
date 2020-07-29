@@ -1,6 +1,10 @@
 import { Point } from './polyomino-packing';
 
-//a function to determine the grid cells where a line between point p0 and p1 pass through
+/**
+ * a function to determine the grid cells where a line between point p0 and p1 pass through
+ * @param { import('./typedef').IPoint } p0
+ * @param { import('./typedef').IPoint } p1
+ */
 export function LineSuperCover(p0, p1) {
   var dx = p1.x - p0.x, dy = p1.y - p0.y;
   var nx = Math.floor(Math.abs(dx)), ny = Math.floor(Math.abs(dy));
@@ -31,20 +35,9 @@ export function LineSuperCover(p0, p1) {
 
 /**
  * finds the current center of components
- * @param { Array } components 
+ * @param { import('./typedef').Component[] } components 
  */
 export function getCenter(components) {
-  // In case the platform doesn't have flatMap function
-  if (typeof Array.prototype['flatMap'] === 'undefined') {
-    Array.prototype['flatMap'] = function (f) {
-      const concat = (x, y) => x.concat(y);
-      const flatMap = (f, xs) => xs.map(f).reduce(concat, []);
-
-      return flatMap(f, this);
-    };
-  }
-
-  // @ts-ignore
   let bounds = components.flatMap(component => component.nodes)
     .map(node => ({
       left: node.x,
