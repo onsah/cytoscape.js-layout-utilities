@@ -1,27 +1,13 @@
-var generalUtils = {};
-var polyominoPacking = require('./polyomino-packing');
-const { Point } = require('./polyomino-packing');
-
-
-//a function to remove duplicate object in array
-generalUtils.uniqueArray = function (ar) {
-  var j = {};
-  ar.forEach(function (v) {
-    j[v + '::' + typeof v] = v;
-  });
-  return Object.keys(j).map(function (v) {
-    return j[v];
-  });
-};
+import { Point } from './polyomino-packing';
 
 //a function to determine the grid cells where a line between point p0 and p1 pass through
-generalUtils.LineSuperCover = function (p0, p1) {
+export function LineSuperCover(p0, p1) {
   var dx = p1.x - p0.x, dy = p1.y - p0.y;
   var nx = Math.floor(Math.abs(dx)), ny = Math.floor(Math.abs(dy));
   var sign_x = dx > 0 ? 1 : -1, sign_y = dy > 0 ? 1 : -1;
 
-  var p = new polyominoPacking.Point(p0.x, p0.y);
-  var points = [new polyominoPacking.Point(p.x, p.y)];
+  var p = new Point(p0.x, p0.y);
+  var points = [new Point(p.x, p.y)];
   for (var ix = 0, iy = 0; ix < nx || iy < ny;) {
     if ((0.5 + ix) / nx == (0.5 + iy) / ny) {
       // next step is diagonal
@@ -38,7 +24,7 @@ generalUtils.LineSuperCover = function (p0, p1) {
       p.y += sign_y;
       iy++;
     }
-    points.push(new polyominoPacking.Point(p.x, p.y));
+    points.push(new Point(p.x, p.y));
   }
   return points;
 };
@@ -47,7 +33,7 @@ generalUtils.LineSuperCover = function (p0, p1) {
  * finds the current center of components
  * @param { Array } components 
  */
-generalUtils.getCenter = function (components) {
+export function getCenter(components) {
   // In case the platform doesn't have flatMap function
   if (typeof Array.prototype['flatMap'] === 'undefined') {
     Array.prototype['flatMap'] = function (f) {
@@ -79,6 +65,43 @@ generalUtils.getCenter = function (components) {
     });
 
   return new Point((bounds.left + bounds.right) / 2, (bounds.top + bounds.bottom) / 2);
-};
+}
 
-module.exports = generalUtils;
+//
+/**
+ *  a function to remove duplicate object in array 
+ * @param { any[] } ar 
+ */
+export function uniqueArray(ar) {
+  /** @type any */
+  var j = {};
+  ar.forEach(function (v) {
+    j[v + '::' + typeof v] = v;
+  });
+  return Object.keys(j).map(function (v) {
+    return j[v];
+  });
+}
+
+/**
+ * Calculates the bounding rectangle of a graph
+ * @param { import('./typedef').Component } component 
+ */
+export function getBoundingRectangle(component) {
+    let x1 = Number.MAX_VALUE, x2 = -Number.MAX_VALUE, y1 = Number.MAX_VALUE, y2 = -Number.MAX_VALUE;
+    component.nodes.forEach(function (node) {
+      if (node.x <= x1) x1 = node.x;
+      if (node.y <= y1) y1 = node.y;
+      if (node.x + node.width >= x2) x2 = node.x + node.width;
+      if (node.y + node.height >= y2) y2 = node.y + node.height;
+    });
+
+    component.edges.forEach(function (edge) {
+      if (edge.startX <= x1) x1 = edge.startX;
+      if (edge.startY <= y1) y1 = edge.startY;
+      if (edge.endX >= x2) x2 = edge.endX;
+      if (edge.endY >= y2) y2 = edge.endY;
+    });
+
+    return { x1, x2, y1, y2 };
+}

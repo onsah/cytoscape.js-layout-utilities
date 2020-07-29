@@ -1,4 +1,6 @@
-class Polyomino {
+import { LineSuperCover } from './general-utils';
+
+export class Polyomino {
     /**
      * @param { number } width width of the polyomino in pixels
      * @param { number } height height of the polyomino in pixels
@@ -6,6 +8,10 @@ class Polyomino {
      * @param { number } x1
      * @param { number } y1
      * @param { number } gridStep width and height of a grid square
+     * @param {{ 
+     *  component: import('./typedef').Component, 
+     *  boundingRect: { x1: number, x2: number, y1: number, y2: number } 
+     * }} [componentAndRect]
      * 
      * @description 
      * Note: width and height are added to establish centering according to old layout center
@@ -17,7 +23,7 @@ class Polyomino {
      * Old width and height properties were containing actually width and height divided by grid step, so I thought stepWidth and
      * stepHeight are more convenient names for them. 
      */
-    constructor(x1, y1, width, height, gridStep, index) {
+    constructor(x1, y1, width, height, gridStep, index, componentAndRect) {
         this.width = width;
         this.height = height;
         this.gridStep = gridStep;
@@ -35,6 +41,63 @@ class Polyomino {
         /** inner center */
         this.center = new Point(Math.floor(this.stepWidth / 2), Math.floor(this.stepHeight / 2));// center of polyomino
         this.numberOfOccupiredCells = 0;
+
+        if (typeof componentAndRect !== 'undefined') {
+            this.fill(componentAndRect.component, componentAndRect.boundingRect);
+        }
+    }
+
+    /**
+     * Fills the areas covered by the component
+     * @param { import('./typedef').Component } component 
+     * @param {{ x1: number, x2: number, y1: number, y2: number }} boundingRect 
+     * Rectangle bounding component, can be calculated from component but taken as argument since it is already calcualated
+     */
+    fill(component, boundingRect) {
+        //fill nodes to polyomino cells
+        component.nodes.forEach((node) => {
+            //top left cell of a node
+            var topLeftX = Math.floor((node.x - boundingRect.x1) / this.gridStep);
+            var topLeftY = Math.floor((node.y - boundingRect.y1) / this.gridStep);
+
+            //bottom right cell of a node
+            var bottomRightX = Math.floor((node.x + node.width - boundingRect.x1) / this.gridStep);
+            var bottomRightY = Math.floor((node.y + node.height - boundingRect.y1) / this.gridStep);
+
+            //all cells between topleft cell and bottom right cell should be occupied
+            for (var i = topLeftX; i <= bottomRightX; i++) {
+            for (var j = topLeftY; j <= bottomRightY; j++) {
+                this.grid[i][j] = true;
+            }
+            }
+        });
+
+      //fill cells where edges pass 
+      component.edges.forEach((edge) => {
+        var p0 = {}, p1 = {};
+        p0.x = (edge.startX - boundingRect.x1) / this.gridStep;
+        p0.y = (edge.startY - boundingRect.y1) / this.gridStep;
+        p1.x = (edge.endX - boundingRect.x1) / this.gridStep;
+        p1.y = (edge.endY - boundingRect.y1) / this.gridStep;
+        //for every edge calculate the super cover 
+        // This fails for some reason
+        var points = LineSuperCover(p0, p1);
+        points.forEach((point) => {
+          var indexX = Math.floor(point.x);
+          var indexY = Math.floor(point.y);
+          if (indexX >= 0 && indexX < this.stepWidth && indexY >= 0 && indexY < this.stepHeight) {
+            this.grid[Math.floor(point.x)][Math.floor(point.y)] = true;
+          }
+        });
+      });
+
+      //update number of occupied cells in polyomino
+      for (var i = 0; i < this.stepWidth; i++) {
+        for (var j = 0; j < this.stepHeight; j++) {
+          if (this.grid[i][j]) this.numberOfOccupiredCells++;
+
+        }
+      }
     }
 
     /**
@@ -80,7 +143,7 @@ class Polyomino {
     }
 }
 
-class Point {
+export class Point {
     /**
      * 
      * @param { number } x 
@@ -103,7 +166,7 @@ class Point {
     }
 }
 
-class BoundingRectangle {
+export class BoundingRectangle {
     /**
      * @param { number } x1
      * @param { number } y1
@@ -137,7 +200,7 @@ class Cell {
     }
 }
 
-class Grid {
+export class Grid {
     /** 
      * @param { number } width 
      * @param { number } height 
@@ -379,10 +442,3 @@ class Grid {
         return result;
     }
 }
-
-module.exports = {
-    Grid: Grid,
-    Polyomino: Polyomino,
-    BoundingRectangle: BoundingRectangle,
-    Point: Point
-};

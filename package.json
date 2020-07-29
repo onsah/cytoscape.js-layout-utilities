@@ -14,7 +14,7 @@
     "gh-pages:clean": "rimraf index.html",
     "copyright": "update license",
     "lint": "eslint src",
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=development webpack",
     "build:min": "cross-env NODE_ENV=production MIN=true webpack",
     "build:release": "run-s build copyright",
     "watch": "webpack --progress --watch",
@@ -37,8 +37,8 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "@babel/preset-typescript": "^7.10.4",
     "@types/cytoscape": "^3.14.7",
+    "@types/node": "^14.0.27",
     "babel-loader": "^8.1.0",
     "camelcase": "^4.1.0",
     "chai": "4.0.2",
