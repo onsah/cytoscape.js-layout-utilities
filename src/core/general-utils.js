@@ -1,4 +1,4 @@
-import { Point } from './polyomino-packing';
+import { Point, BoundingRectangle } from './polyomino-packing';
 
 /**
  * a function to determine the grid cells where a line between point p0 and p1 pass through
@@ -85,8 +85,8 @@ export function getBoundingRectangle(component) {
     component.nodes.forEach(function (node) {
       if (node.x <= x1) x1 = node.x;
       if (node.y <= y1) y1 = node.y;
-      if (node.x + node.width >= x2) x2 = node.x + node.width;
-      if (node.y + node.height >= y2) y2 = node.y + node.height;
+      if ((node.x + node.width - 1) >= x2) x2 = (node.x + node.width - 1);
+      if ((node.y + node.height - 1) >= y2) y2 = (node.y + node.height - 1);
     });
 
     component.edges.forEach(function (edge) {
@@ -96,5 +96,5 @@ export function getBoundingRectangle(component) {
       if (edge.endY >= y2) y2 = edge.endY;
     });
 
-    return { x1, x2, y1, y2 };
+    return new BoundingRectangle(x1, y1, x2, y2);
 }

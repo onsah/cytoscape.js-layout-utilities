@@ -1,4 +1,5 @@
 import { LineSuperCover } from './general-utils';
+import { Direction } from './models/compaction-grid';
 
 export class Polyomino {
     /**
@@ -10,7 +11,7 @@ export class Polyomino {
      * @param { number } gridStep width and height of a grid square
      * @param {{ 
      *  component: import('./typedef').Component, 
-     *  boundingRect: { x1: number, x2: number, y1: number, y2: number } 
+     *  boundingRect: import('./typedef').IBoundingRectangle 
      * }} [componentAndRect]
      * 
      * @description 
@@ -24,9 +25,13 @@ export class Polyomino {
      * stepHeight are more convenient names for them. 
      */
     constructor(x1, y1, width, height, gridStep, index, componentAndRect) {
+        this.x1 = x1; //kept to determine the amount of shift in the output
+        this.y1 = y1;//kept to determine the amount of shift in the output
+        this.index = index; //order of polyomino in the input of the packing function
         this.width = width;
         this.height = height;
         this.gridStep = gridStep;
+        /** @type { boolean[][] } */
         this.grid = new Array(this.stepWidth);
         for (var i = 0; i < this.stepWidth; i++) {
             this.grid[i] = new Array(this.stepHeight);
@@ -34,10 +39,8 @@ export class Polyomino {
                 this.grid[i][j] = false;
             }
         }
-        this.index = index; //index of polyomino in the input of the packing function
-        this.x1 = x1; //kept to determine the amount of shift in the output
-        this.y1 = y1;//kept to determine the amount of shift in the output
-        this.location = new Point(-1, -1);  //the grid cell coordinates where the polyomino was placed
+        /**the grid cell coordinates where the polyomino was placed. Denotes center */
+        this.location = new Point(-1, -1); 
         /** inner center */
         this.center = new Point(Math.floor(this.stepWidth / 2), Math.floor(this.stepHeight / 2));// center of polyomino
         this.numberOfOccupiredCells = 0;
@@ -56,14 +59,22 @@ export class Polyomino {
     fill(component, boundingRect) {
         //fill nodes to polyomino cells
         component.nodes.forEach((node) => {
-            //top left cell of a node
+            /* //top left cell of a node
             var topLeftX = Math.floor((node.x - boundingRect.x1) / this.gridStep);
             var topLeftY = Math.floor((node.y - boundingRect.y1) / this.gridStep);
 
             //bottom right cell of a node
             var bottomRightX = Math.floor((node.x + node.width - boundingRect.x1) / this.gridStep);
-            var bottomRightY = Math.floor((node.y + node.height - boundingRect.y1) / this.gridStep);
+            var bottomRightY = Math.floor((node.y + node.height - boundingRect.y1) / this.gridStep); */
 
+            let stepX1 = Math.floor(boundingRect.x1 / this.gridStep),
+                stepY1 = Math.floor(boundingRect.y1 / this.gridStep);
+
+            let topLeftX = Math.floor(node.x / this.gridStep) - stepX1,
+                topLeftY = Math.floor(node.y / this.gridStep) - stepY1,
+                bottomRightX = Math.floor((node.x + node.width - 1) / this.gridStep) - stepX1,
+                bottomRightY = Math.floor((node.y + node.height - 1) / this.gridStep) - stepY1;
+                
             //all cells between topleft cell and bottom right cell should be occupied
             for (var i = topLeftX; i <= bottomRightX; i++) {
                 for (var j = topLeftY; j <= bottomRightY; j++) {
@@ -72,70 +83,70 @@ export class Polyomino {
             }
         });
 
-      //fill cells where edges pass 
-      component.edges.forEach((edge) => {
-        var p0 = {}, p1 = {};
-        p0.x = (edge.startX - boundingRect.x1) / this.gridStep;
-        p0.y = (edge.startY - boundingRect.y1) / this.gridStep;
-        p1.x = (edge.endX - boundingRect.x1) / this.gridStep;
-        p1.y = (edge.endY - boundingRect.y1) / this.gridStep;
-        //for every edge calculate the super cover 
-        // This fails for some reason
-        var points = LineSuperCover(p0, p1);
-        points.forEach((point) => {
-          var indexX = Math.floor(point.x);
-          var indexY = Math.floor(point.y);
-          if (indexX >= 0 && indexX < this.stepWidth && indexY >= 0 && indexY < this.stepHeight) {
-            this.grid[Math.floor(point.x)][Math.floor(point.y)] = true;
-          }
+        //fill cells where edges pass 
+        component.edges.forEach((edge) => {
+            var p0 = {}, p1 = {};
+            p0.x = (edge.startX - boundingRect.x1) / this.gridStep;
+            p0.y = (edge.startY - boundingRect.y1) / this.gridStep;
+            p1.x = (edge.endX - boundingRect.x1) / this.gridStep;
+            p1.y = (edge.endY - boundingRect.y1) / this.gridStep;
+            //for every edge calculate the super cover 
+            // This fails for some reason
+            var points = LineSuperCover(p0, p1);
+            points.forEach((point) => {
+                var indexX = Math.floor(point.x);
+                var indexY = Math.floor(point.y);
+                if (indexX >= 0 && indexX < this.stepWidth && indexY >= 0 && indexY < this.stepHeight) {
+                    this.grid[Math.floor(point.x)][Math.floor(point.y)] = true;
+                }
+            });
         });
-      });
 
-      //update number of occupied cells in polyomino
-      for (var i = 0; i < this.stepWidth; i++) {
-        for (var j = 0; j < this.stepHeight; j++) {
-          if (this.grid[i][j]) this.numberOfOccupiredCells++;
-
+        //update number of occupied cells in polyomino
+        for (var i = 0; i < this.stepWidth; i++) {
+            for (var j = 0; j < this.stepHeight; j++) {
+                if (this.grid[i][j]) 
+                    this.numberOfOccupiredCells++;
+            }
         }
-      }
+    }
+
+    get x2() {
+        return this.x1 + this.width - 1;
+    }
+
+    get y2() {
+        return this.y1 + this.height - 1;
+    }
+
+    get stepX1() {
+        return Math.floor(this.x1 / this.gridStep);
+    }
+
+    get stepY1() {
+        return Math.floor(this.y1 / this.gridStep);
+    }
+
+    get stepX2() {
+        return Math.floor(this.x2 / this.gridStep);
+    }
+
+    get stepY2() {
+        return Math.floor(this.y2 / this.gridStep);
     }
 
     /**
      * width of the polyomino divided by grid steps
      */
     get stepWidth() {
-        return Math.floor(this.width / this.gridStep) + 1;
+        return this.stepX2 - this.stepX1 + 1;
     }
 
     /**
      * height of the polyomino divided by grid steps
      */
     get stepHeight() {
-        return Math.floor(this.height / this.gridStep) + 1;
-    }
-
-    get x2() {
-        return this.x1 + this.width;
-    }
-
-    get y2() {
-        return this.y1 + this.height;
-    }
-
-    get stepX1() {
-        return Math.floor(this.x1);
-    }
-
-    get stepY1() {
-        return Math.floor(this.y1);
-    }
-
-    get stepX2() {
-        return Math.ceil(this.x2);
-    }
-
-    get stepY2() {
-        return Math.ceil(this.y2);
+        return this.stepY2 - this.stepY1 + 1;
     }
 
     /**
@@ -155,6 +166,19 @@ export class Polyomino {
             // -1 because if length == 1 then x2 == x1
             polyx1 + this.stepWidth - 1,
             polyy1 + this.stepHeight - 1 
+        );
+    }
+
+    /**
+     * Bounding rectangle with respect to x1, y1 and width, height inside the grid area \
+     * Divided by grid step
+     */
+    get stepBoundingRectangle() {
+        return new BoundingRectangle(
+            this.stepX1,
+            this.stepY1,
+            this.stepX2,
+            this.stepY2
         );
     }
 }
@@ -180,9 +204,38 @@ export class Point {
             other.y - this.y
         );
     }
+
+    /**
+     * @param { Point } other 
+     */
+    plus(other) {
+        return new Point(
+            this.x + other.x,
+            this.y + other.y,
+        );
+    }
+
+    /**
+     * @param { Direction } direction
+     */
+    static fromDirection(direction) {
+        switch (direction) {
+            case Direction.LEFT:
+                return new Point(1, 0);
+            case Direction.RIGHT:
+                return new Point(-1, 0);
+            case Direction.BOTTOM:
+                return new Point(0, -1);
+            case Direction.TOP:
+                return new Point(0, 1);
+            default:
+                throw new Error(`Invalid direction: ${Direction}`);
+        }
+    }
 }
 
 export class BoundingRectangle {
+
     /**
      * @param { number } x1
      * @param { number } y1
@@ -212,6 +265,28 @@ export class BoundingRectangle {
         this.y1 = Math.min(this.y1, other.y1);
         this.x2 = Math.max(this.x2, other.x2);
         this.y2 = Math.max(this.y2, other.y2);
+    }
+
+    /**
+     * Returns if the position is contained in the BoundingRectangle
+     * @param { number } i 
+     * @param { number } j 
+     */
+    contains(i, j) {
+        return i >= this.y1 &&
+            i <= this.y2 &&
+            j >= this.x1 &&
+            j <= this.x2;
+    }       
+
+    get width() {
+        // +1 because x2 is inclusive
+        return this.x2 - this.x1 + 1;
+    }
+
+    get height() {
+        // +1 because y2 is inclusive
+        return this.y2 - this.y1 + 1;
     }
 }
 

@@ -204,12 +204,12 @@
             { data: { id: 'n13', name: 'n13' } },
             { data: { id: 'n14', name: 'n14' } },
             { data: { id: 'n15', name: 'n15' } },
-            { data: { id: 'n16', name: 'n16' } },
+            // { data: { id: 'n16', name: 'n16' } },
             { data: { id: 'n17', name: 'n17' } },
-            { data: { id: 'n18', name: 'n18' } },
+            //{ data: { id: 'n18', name: 'n18' } },
             { data: { id: 'n19', name: 'n19' } },
             { data: { id: 'n20', name: 'n20' } },
-            { data: { id: 'n21', name: 'n21' } },
+            // { data: { id: 'n21', name: 'n21' } },
 
             { data: { id: 'n22', name: 'n22' } },
             { data: { id: 'n23', name: 'n23' } },
@@ -283,7 +283,8 @@
             desiredAspectRatio: parseFloat($('#desiredAspectRatio').val()),
             polyominoGridSizeFactor: parseFloat($('#gridSizeFactor').val()),
             utilityFunction: parseInt($('#utilityFunctionType').val()),
-            componentSpacing: parseInt($('#componentSpacing').val())
+            componentSpacing: parseInt($('#componentSpacing').val()),
+            randomize: !document.getElementById('incremental').checked,
           }
         );
         var components = cy.elements(":visible").components();
@@ -395,7 +396,9 @@
   <div class="topnav">
 
     <button id="polyominoPack" class="button">Pack components</button>
-    <br /><br />
+    <br />
+    <input type="checkbox" id="incremental"> <label for="incremental"> incremental </label>
+    <br />
     <!-- <input  style="cursor: pointer; color: brown">Pack components</button><br/><br/> -->
     <form>
       <p><label>Select utility function</label></p>

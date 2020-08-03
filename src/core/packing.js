@@ -1,5 +1,6 @@
 import { getCenter, getBoundingRectangle } from './general-utils';
-import { Polyomino, Grid, BoundingRectangle } from './polyomino-packing';
+import { Polyomino, Grid, Point } from './polyomino-packing';
+import { CompactionGrid, Direction } from './models/compaction-grid';
 
 /**
  * This module is created so that parts of packing operations can be used in both of the packing methods
@@ -167,19 +168,39 @@ function incrementalPack(components, options) {
 
     let { polyominos } = createPolyominos(components, gridStep);
 
-    // bounding rectangle by their current positions
-    let localBoundingRectangle = new BoundingRectangle(
-      Number.MAX_VALUE,
-      Number.MAX_VALUE,
-      -Number.MAX_VALUE,
-      -Number.MAX_VALUE
-    );
+    return incrementalPackImpl(polyominos, gridStep);
+}
 
-    for (let polyomino of polyominos) {
+/**
+ * Rest of the function after converting components to polyomino
+ * @param { Polyomino[] } polyominos
+ * @param { number } gridStep
+ */
+export function incrementalPackImpl(polyominos, gridStep) {
+    let compactionGrid = new CompactionGrid(polyominos, gridStep);    
       
+    {
+      const directions = Object.values(Direction);
+      /** @type { boolean[] } */
+      let compacted = [];
+      for (let dir of directions) {
+        compacted[dir] = true;
+      }
+
+      while (compacted.some(b => b)) {
+        for (let dir of directions) {
+          compacted[dir] = compactionGrid.tryCompact(dir);
+        }
+      }
     }
 
-    throw new Error('Not Implemented');
+    let shifts = polyominos.map(p => ({
+        dx: (p.location.x - p.stepX1) * gridStep,
+        dy: (p.location.y - p.stepY1) * gridStep,
+      })
+    );
+
+    return { shifts };
 }
 
 // Below there are functions used in both methods
@@ -246,20 +267,20 @@ function createPolyominos(components, gridStep) {
     let gridWidth = 0, gridHeight = 0;
 
     for (let [index, component] of components.entries()) {
-        let { x1, x2, y1, y2 } = getBoundingRectangle(component);
+        let boundingRect = getBoundingRectangle(component);
 
-        let componentWidth = x2 - x1;
-        let componentHeight = y2 - y1;
+        let componentWidth = boundingRect.width;
+        let componentHeight = boundingRect.height;
 
         gridWidth += componentWidth;
         gridHeight += componentHeight;
 
         let componentPolyomino = new Polyomino(
-          x1, y1, 
+          boundingRect.x1, boundingRect.y1, 
           componentWidth, 
           componentHeight, 
           gridStep, index,
-          { component, boundingRect: { x1, x2, y1, y2 } }
+          { component, boundingRect }
         );
 
         polyominos.push(componentPolyomino);
