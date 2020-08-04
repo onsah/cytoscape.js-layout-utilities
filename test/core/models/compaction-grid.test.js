@@ -1,4 +1,4 @@
-import { Polyomino } from "../../../src/core/polyomino-packing";
+import { Polyomino } from "../../../src/core/models/polyomino";
 import { CompactionGrid, Direction } from "../../../src/core/models/compaction-grid";
 import assert from "assert";
 

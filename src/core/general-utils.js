@@ -1,4 +1,4 @@
-import { Point, BoundingRectangle } from './polyomino-packing';
+import { Point, BoundingRectangle } from './models/common';
 
 /**
  * a function to determine the grid cells where a line between point p0 and p1 pass through

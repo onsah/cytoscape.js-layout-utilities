@@ -1,6 +1,7 @@
 import { getCenter, getBoundingRectangle } from './general-utils';
-import { Polyomino, Grid, Point } from './polyomino-packing';
 import { CompactionGrid, Direction } from './models/compaction-grid';
+import { Polyomino } from './models/polyomino';
+import { Grid } from './models/grid';
 
 /**
  * This module is created so that parts of packing operations can be used in both of the packing methods

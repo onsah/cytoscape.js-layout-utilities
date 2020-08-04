@@ -1,5 +1,6 @@
 import assert from 'assert';
-import { BoundingRectangle, Polyomino } from'../../src/core/polyomino-packing';
+import { Polyomino } from'../../src/core/models/polyomino';
+import { BoundingRectangle } from '../../src/core/models/common';
 
 describe('class BoundingRectangle', () => {
     it('checks include', () => {

@@ -1,4 +1,5 @@
-import { Polyomino, BoundingRectangle, Point } from "../polyomino-packing";
+import { BoundingRectangle, Point } from "./common";
+import { Polyomino } from "./polyomino";
 
 // TODO: move the constants when class properties are not experimental feature
 export const GRID_EMPTY = -1;

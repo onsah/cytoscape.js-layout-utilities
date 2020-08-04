@@ -1,4 +1,4 @@
-import { Polyomino } from "../../src/core/polyomino-packing";
+import { Polyomino } from "../../src/core/models/polyomino";
 import { incrementalPackImpl } from "../../src/core/packing";
 import assert from "assert";
 
