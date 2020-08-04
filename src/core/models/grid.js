@@ -68,9 +68,9 @@ export class Grid {
                 endIndex = resultPoints.length - 1;
             }
         } else {
-            cells.forEach((cell) => {
+            for (let cell of cells) {
                 resultPoints = resultPoints.concat(this.getCellNeighbors(cell.x, cell.y));
-            });
+            }
         }
         return resultPoints;
     }

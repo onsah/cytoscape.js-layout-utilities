@@ -58,18 +58,19 @@ export class Polyomino {
      */
     fill(component, boundingRect) {
         //fill nodes to polyomino cells
-        component.nodes.forEach((node) => {
+        // for-of is faster than forEach https://jsperf.com/for-of-vs-foreach/10
+        for (let node of component.nodes) {
             /* //top left cell of a node
             var topLeftX = Math.floor((node.x - boundingRect.x1) / this.gridStep);
             var topLeftY = Math.floor((node.y - boundingRect.y1) / this.gridStep);
-
+    
             //bottom right cell of a node
             var bottomRightX = Math.floor((node.x + node.width - boundingRect.x1) / this.gridStep);
             var bottomRightY = Math.floor((node.y + node.height - boundingRect.y1) / this.gridStep); */
-
+    
             let stepX1 = Math.floor(boundingRect.x1 / this.gridStep),
                 stepY1 = Math.floor(boundingRect.y1 / this.gridStep);
-
+    
             let topLeftX = Math.floor(node.x / this.gridStep) - stepX1,
                 topLeftY = Math.floor(node.y / this.gridStep) - stepY1,
                 bottomRightX = Math.floor((node.x + node.width - 1) / this.gridStep) - stepX1,
@@ -81,10 +82,10 @@ export class Polyomino {
                     this.grid[i][j] = true;
                 }
             }
-        });
+        }
 
         //fill cells where edges pass 
-        component.edges.forEach((edge) => {
+        for (let edge of component.edges) {
             let p0 = new Point(
                     (edge.startX - boundingRect.x1) / this.gridStep,
                     (edge.startY - boundingRect.y1) / this.gridStep,
@@ -96,14 +97,14 @@ export class Polyomino {
             //for every edge calculate the super cover 
             // This fails for some reason
             var points = LineSuperCover(p0, p1);
-            points.forEach((point) => {
-                var indexX = Math.floor(point.x);
-                var indexY = Math.floor(point.y);
+            for (let point of points) {
+                let indexX = Math.floor(point.x);
+                let indexY = Math.floor(point.y);
                 if (indexX >= 0 && indexX < this.stepWidth && indexY >= 0 && indexY < this.stepHeight) {
                     this.grid[Math.floor(point.x)][Math.floor(point.y)] = true;
                 }
-            });
-        });
+            }
+        }
 
         //update number of occupied cells in polyomino
         for (var i = 0; i < this.stepWidth; i++) {

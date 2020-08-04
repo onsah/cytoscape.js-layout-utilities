@@ -68,9 +68,9 @@ export function getCenter(components) {
 export function uniqueArray(ar) {
   /** @type any */
   var j = {};
-  ar.forEach(function (v) {
+  for (let v of ar) {
     j[v + '::' + typeof v] = v;
-  });
+  }
   return Object.keys(j).map(function (v) {
     return j[v];
   });
@@ -82,19 +82,19 @@ export function uniqueArray(ar) {
  */
 export function getBoundingRectangle(component) {
     let x1 = Number.MAX_VALUE, x2 = -Number.MAX_VALUE, y1 = Number.MAX_VALUE, y2 = -Number.MAX_VALUE;
-    component.nodes.forEach(function (node) {
+    for (let node of component.nodes) {
       if (node.x <= x1) x1 = node.x;
       if (node.y <= y1) y1 = node.y;
       if ((node.x + node.width - 1) >= x2) x2 = (node.x + node.width - 1);
       if ((node.y + node.height - 1) >= y2) y2 = (node.y + node.height - 1);
-    });
+    }
 
-    component.edges.forEach(function (edge) {
+    for (let edge of component.edges) {
       if (edge.startX <= x1) x1 = edge.startX;
       if (edge.startY <= y1) y1 = edge.startY;
       if (edge.endX >= x2) x2 = edge.endX;
       if (edge.endY >= y2) y2 = edge.endY;
-    });
+    }
 
     return new BoundingRectangle(x1, y1, x2, y2);
 }

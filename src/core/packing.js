@@ -74,7 +74,7 @@ function nonIncrementalPack(components, options) {
       while (!placementFound) {
 
         cells = mainGrid.getDirectNeighbors(cells, Math.ceil(Math.max(polyominos[i].stepWidth, polyominos[i].stepHeight) / 2));
-        cells.forEach(function (cell) {
+        for (let cell of cells) {
           if (mainGrid.tryPlacingPolyomino(polyominos[i], cell.x, cell.y)) {
             placementFound = true;
             var utilityValue = mainGrid.calculateUtilityOfPlacing(polyominos[i], cell.x, cell.y, options.desiredAspectRatio);
@@ -85,7 +85,7 @@ function nonIncrementalPack(components, options) {
               } else if (utilityValue.adjustedFullness == adjustedFullnessMax) {
                 if (utilityValue.fullness > fullnessMax) {
                   cellChosen = true;
-
+  
                 } else if (utilityValue.fullness == fullnessMax) {
                   if (Math.abs(utilityValue.actualAspectRatio - options.desiredAspectRatio) <= minAspectRatioDiff) {
                     cellChosen = true;
@@ -99,7 +99,7 @@ function nonIncrementalPack(components, options) {
                 resultLocation.x = cell.x;
                 resultLocation.y = cell.y;
               }
-
+  
             } else if (options.utilityFunction == 2) {
               var aspectRatioDiff = Math.abs(utilityValue.actualAspectRatio - options.desiredAspectRatio);
               var weightedUtility = (utilityValue.fullness * .5) + ((1 - aspectRatioDiff / Math.max(utilityValue.actualAspectRatio, options.desiredAspectRatio) * .5));
@@ -110,7 +110,7 @@ function nonIncrementalPack(components, options) {
               }
             }
           }
-        });
+        }
       }
 
       mainGrid.placePolyomino(polyominos[i], resultLocation.x, resultLocation.y);
@@ -130,11 +130,11 @@ function nonIncrementalPack(components, options) {
     /** @type {{ dx: number, dy: number }[]} */
     let shifts = [];
     
-    polyominos.forEach(function (pol) {
+    for (let pol of polyominos) {
       var dx = (pol.location.x - pol.center.x - mainGrid.occupiedRectangle.x1) * gridStep - pol.x1;
       var dy = (pol.location.y - pol.center.y - mainGrid.occupiedRectangle.y1) * gridStep - pol.y1;
       shifts.push({ dx: dx, dy: dy });
-    });
+    }
 
     // Calculate what would be the center of the packed layout
     let packingCenter = calculatePackingCenter(components, shifts);
@@ -161,6 +161,7 @@ function nonIncrementalPack(components, options) {
  */
 function incrementalPack(components, options) {
     let gridStep = calculateGridStep(components, options);
+    console.log(`gridStep: ${gridStep}`);
 
     if (options.componentSpacing > 0) {
       let spacingAmount = options.componentSpacing;
@@ -211,12 +212,12 @@ export function incrementalPackImpl(polyominos, gridStep) {
  * @param { { dx: number, dy: number }[] } shifts
  */
 function calculatePackingCenter(components, shifts) {
-    components.forEach((component, index) => {
-        component.nodes.forEach(node => {
-        node.x += shifts[index].dx;
-        node.y += shifts[index].dy;
-        });
-    });
+    for (let [index, component] of components.entries()) {
+        for (let node of component.nodes) {
+            node.x += shifts[index].dx;
+            node.y += shifts[index].dy;
+        }
+    }
 
     return getCenter(components);
 }
@@ -229,12 +230,11 @@ function calculateGridStep(components, options) {
     let gridStep = 0;
     
     let totalNodes = 0;
-    components.forEach(function (component) {
-      totalNodes += component.nodes.length;
-      component.nodes.forEach(function (node) {
-        gridStep += node.width + node.height;
-      });
-    });
+    for (let component of components) {
+        totalNodes += component.nodes.length;
+        gridStep += component.nodes.reduce(
+            (gridStep, node) => gridStep + node.width + node.height, 0);
+    }
     
     gridStep = gridStep / (2 * totalNodes);
     gridStep = Math.floor(gridStep * options.polyominoGridSizeFactor);
