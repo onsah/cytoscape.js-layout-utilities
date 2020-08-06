@@ -1,4 +1,4 @@
-import { Point, BoundingRectangle } from './models/common';
+import { Point, Rectangle } from './models/common';
 
 /**
  * a function to determine the grid cells where a line between point p0 and p1 pass through
@@ -96,5 +96,77 @@ export function getBoundingRectangle(component) {
       if (edge.endY >= y2) y2 = edge.endY;
     }
 
-    return new BoundingRectangle(x1, y1, x2, y2);
+    return new Rectangle(x1, y1, x2, y2);
 }
+
+/**
+ * See: http://eugen.dedu.free.fr/projects/bresenham/
+ * @param { import('./typedef').ILine } line 
+ * @returns { import('./typedef').IPoint[] }
+ */
+export function betterLineSupercover(line) {
+  let p = { x: line.min.x, y: line.min.y };
+  let points = [ { x: p.x, y: p.y } ];
+
+  let dx = line.max.x - line.min.x,
+      dy = line.max.y - line.min.y,
+      xStep = Math.sign(dx),
+      yStep = Math.sign(dy);
+
+  dx = Math.abs(dx);
+  dy = Math.abs(dy);
+
+  let ddx = 2 * dx, ddy = 2 * dy;
+
+  if (ddx >= ddy) {
+      let error = dx, errorprev = dx;
+
+      for (let i = 0; i < dx; ++i) {
+          p.x += xStep;
+          error += ddy;
+
+          if (error > ddx) {
+              p.y += yStep;
+              error -= ddx;
+
+              if (error + errorprev < ddx) {
+                  points.push({ x: p.x, y: p.y - yStep });
+              } else if (error + errorprev > ddx) {
+                  points.push({ x: p.x - xStep, y: p.y });
+              } else {
+                  points.push({ x: p.x, y: p.y - yStep });
+                  points.push({ x: p.x - xStep, y: p.y });
+              }
+          }
+
+          points.push({ x: p.x, y: p.y });
+          errorprev = error;
+      }
+  } else {
+      let error = dy, errorprev = dy;
+
+      for (let i = 0; i < dy; ++i) {
+          p.y += yStep;
+          error += ddx;
+
+          if (error > ddy) {
+              p.x += xStep;
+              error -= ddx;
+
+              if (error + errorprev < ddy) {
+                  points.push({ x: p.x - xStep, y: p.y });
+              } else if (error + errorprev > ddy) {
+                  points.push({ x: p.x, y: p.y - yStep });
+              } else {
+                  points.push({ x: p.x - xStep, y: p.y });
+                  points.push({ x: p.x, y: p.y - yStep });
+              }
+          }
+
+          points.push({ x: p.y, y: p.y });
+          errorprev = error;
+      }
+  }
+
+  return points;
+} 

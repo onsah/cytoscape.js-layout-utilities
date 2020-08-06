@@ -1,4 +1,4 @@
-import { Cell, BoundingRectangle, Point } from './common';
+import { Cell, Rectangle, Point } from './common';
 import { Polyomino } from './polyomino';
 
 export class Grid {
@@ -16,7 +16,7 @@ export class Grid {
             ((_) => Array.from({ length: this.stepHeight },
                 ((_) => new Cell(false, false)))));
         this.center = new Point(Math.floor(this.stepWidth / 2), Math.floor(this.stepHeight / 2));
-        this.occupiedRectangle = new BoundingRectangle(
+        this.occupiedRectangle = new Rectangle(
             Number.MAX_VALUE, Number.MAX_VALUE, 
             -Number.MAX_VALUE, -Number.MAX_VALUE
         );  // the bounding rectanble of the occupied cells in the grid

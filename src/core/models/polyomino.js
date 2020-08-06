@@ -1,5 +1,5 @@
-import { LineSuperCover } from '../general-utils';
-import { BoundingRectangle, Point } from './common';
+import { LineSuperCover, betterLineSupercover } from '../general-utils';
+import { Rectangle, Point } from './common';
 
 export class Polyomino {
     /**
@@ -11,7 +11,7 @@ export class Polyomino {
      * @param { number } gridStep width and height of a grid square
      * @param {{ 
      *  component: import('../typedef').Component, 
-     *  boundingRect: import('../typedef').IBoundingRectangle 
+     *  boundingRect: import('../typedef').IRectangle 
      * }} [componentAndRect]
      * 
      * @description 
@@ -95,8 +95,9 @@ export class Polyomino {
                     (edge.endY - boundingRect.y1) / this.gridStep,
                 );
             //for every edge calculate the super cover 
-            // This fails for some reason
-            var points = LineSuperCover(p0, p1);
+            // TODO: we may use the supercover from the physics simulation
+            // This seems to work better
+            var points = betterLineSupercover({ min: p0, max: p1 });
             for (let point of points) {
                 let indexX = Math.floor(point.x);
                 let indexY = Math.floor(point.y);
@@ -164,7 +165,7 @@ export class Polyomino {
         const polyx1 = this.location.x - this.center.x; 
         const polyy1 = this.location.y - this.center.y;
 
-        return new BoundingRectangle(
+        return new Rectangle(
             polyx1,
             polyy1,
             // -1 because if length == 1 then x2 == x1
@@ -178,7 +179,7 @@ export class Polyomino {
      * Divided by grid step
      */
     get stepBoundingRectangle() {
-        return new BoundingRectangle(
+        return new Rectangle(
             this.stepX1,
             this.stepY1,
             this.stepX2,

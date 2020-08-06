@@ -205,6 +205,53 @@ export function incrementalPackImpl(polyominos, gridStep) {
     return { shifts };
 }
 
+/**
+ * Single iteration each time
+ * @param { import('./typedef').Component[] } components
+ * @param { import('./typedef').Options } options
+ */
+export function incrementalSinglePack(components, options) {
+    let gridStep = calculateGridStep(components, options);
+    console.log(`gridStep: ${gridStep}`);
+
+    if (options.componentSpacing > 0) {
+      let spacingAmount = options.componentSpacing;
+      addSpacing(components, spacingAmount);
+    }
+
+    let { polyominos } = createPolyominos(components, gridStep);
+
+  let compactionGrid = new CompactionGrid(polyominos, gridStep);
+  
+  let dir = Direction.LEFT;
+
+  const func = () => {
+    dir += 1;
+    dir %= Object.values(Direction).length;
+
+    let didCompact = compactionGrid.tryCompact(dir);
+
+    if (didCompact) {
+      let shifts = polyominos.map(p => ({
+          dx: (p.location.x - p.stepX1) * gridStep,
+          dy: (p.location.y - p.stepY1) * gridStep,
+        })
+      );
+
+      for (let [i, poly] of polyominos.entries()) {
+        poly.x1 += shifts[i].dx;
+        poly.y1 += shifts[i].dy;
+      }
+
+      return { shifts };
+    } else {
+      return null;
+    }
+  };
+
+  return func;
+}
+
 // Below there are functions used in both methods
 
 /**

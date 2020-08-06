@@ -37,12 +37,17 @@
  *  x2: number;
  *  y1: number;
  *  y2: number;
- * }} IBoundingRectangle
+ * }} IRectangle
  * 
  * @typedef {{
  *  x: number;
  *  y: number;
  * }} IPoint
+ * 
+ * @typedef {{
+ *  min: IPoint;
+ *  max: IPoint
+ * }} ILine
  */
 
 // To make the file module

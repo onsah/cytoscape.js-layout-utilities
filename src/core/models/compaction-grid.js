@@ -1,4 +1,4 @@
-import { BoundingRectangle, Point } from "./common";
+import { Rectangle, Point } from "./common";
 import { Polyomino } from "./polyomino";
 
 // TODO: move the constants when class properties are not experimental feature
@@ -29,17 +29,20 @@ export class CompactionGrid {
     constructor(polyominos, gridStep) {
         // We may not need this
         this.polyominos = polyominos;
+
+        /** @type { Map<Polyomino, Set<Polyomino> | undefined> } caches if the element can be moved or not at this iteration */
+        this.cache = new Map();
         
         let boundingRectangle = CompactionGrid.getRoundedBoundingRectangle(polyominos, gridStep);
 
-        this.absoluteBounds = new BoundingRectangle(
+        this.absoluteBounds = new Rectangle(
             boundingRectangle.x1,
             boundingRectangle.y1,
             boundingRectangle.x2,
             boundingRectangle.y2
         );
 
-        this.compactingBounds = new BoundingRectangle(
+        this.compactingBounds = new Rectangle(
             boundingRectangle.x1,
             boundingRectangle.y1,
             boundingRectangle.x2,
@@ -72,33 +75,36 @@ export class CompactionGrid {
      * @param { Direction } direction
      */
     tryCompact(direction) {
+        // Clear previous cache
+        this.cache.clear();
+
         /** @type { (poly: Polyomino) => boolean } */
         let checkFn;
         /** @type { (poly: Polyomino) => void } */
         let polyMoveFn;
-        /** @type { (bound: BoundingRectangle) => void } */
-        let boundMoveFn;
+        /** @type { (bound: Rectangle) => void } */
+        let boundChangeFn;
 
         switch (direction) {
             case Direction.LEFT:
-                checkFn = (poly) => poly.location.x === this.compactingBounds.x1;
+                checkFn = (poly) => poly.location.x <= this.compactingBounds.x1;
                 polyMoveFn = (poly) => poly.location.x += 1;
-                boundMoveFn = (bound) => bound.x1 += 1;
+                boundChangeFn = (bound) => bound.x1 += 1;
                 break;
             case Direction.TOP:
-                checkFn = (poly) => poly.location.y === this.compactingBounds.y1;
+                checkFn = (poly) => poly.location.y <= this.compactingBounds.y1;
                 polyMoveFn = (poly) => poly.location.y += 1;
-                boundMoveFn = (bound) => bound.y1 += 1;
+                boundChangeFn = (bound) => bound.y1 += 1;
                 break;
             case Direction.RIGHT:
-                checkFn = (poly) => (poly.location.x + poly.stepWidth - 1) === this.compactingBounds.x2;
+                checkFn = (poly) => (poly.location.x + poly.stepWidth - 1) >= this.compactingBounds.x2;
                 polyMoveFn = (poly) => poly.location.x -= 1;
-                boundMoveFn = (bound) => bound.x2 -= 1;
+                boundChangeFn = (bound) => bound.x2 -= 1;
                 break;
             case Direction.BOTTOM:
-                checkFn = (poly) => (poly.location.y + poly.stepHeight - 1) === this.compactingBounds.y2;
+                checkFn = (poly) => (poly.location.y + poly.stepHeight - 1) >= this.compactingBounds.y2;
                 polyMoveFn = (poly) => poly.location.y -= 1;
-                boundMoveFn = (bound) => bound.y2 -= 1;
+                boundChangeFn = (bound) => bound.y2 -= 1;
                 break;
             default:
                 throw new Error('');
@@ -109,6 +115,7 @@ export class CompactionGrid {
         for (let poly of this.polyominos) {
             if (checkFn(poly)) {
                 let movedPolys = this.tryMove(poly, direction);
+
                 if (movedPolys !== undefined) {
                     for (let p of movedPolys) {
                         allMovedPolys.add(p);
@@ -124,7 +131,7 @@ export class CompactionGrid {
             polyMoveFn(movedPoly);
         }
 
-        boundMoveFn(this.compactingBounds);
+        boundChangeFn(this.compactingBounds);
         return true;
     }
 
@@ -136,6 +143,7 @@ export class CompactionGrid {
      */
     polyominoAt(i, j) {
         return this.compactingBounds.contains(i, j) ?
+            // TODO: move this to polyomino.contains
             this.polyominos.find(p => 
                 j >= p.location.x &&
                 j <= p.location.x + p.stepWidth - 1 &&
@@ -152,162 +160,244 @@ export class CompactionGrid {
      * @param { Direction } direction 
      * @returns { Set<Polyomino> | undefined }
      */
-    tryMove(polyomino, direction) {   
+    tryMove(polyomino, direction) {  
+        if (this.cache.has(polyomino)) {
+            return this.cache.get(polyomino);
+        }
+
+        // Assume this can be moved to prevent infinite recursion
+        this.cache.set(polyomino, new Set([ polyomino ]));        
+
         switch (direction) {
             case Direction.LEFT: {
                 let movedPolys = new Set(); 
 
                 for (let i = 0; i < polyomino.stepHeight; i += 1) {
-                    // Find rightmost filled square in that height
                     let j = polyomino.stepWidth - 1;
-                    while (!polyomino.grid[j][i]) {
-                        j -= 1;
-                    }
 
-                    let gridX = polyomino.location.x + j;
-                    let gridY = polyomino.location.y + i;
+                    while (j >= 0) {
+                        // Skip empty grids
+                        while (j >= 0 && !polyomino.grid[j][i]) {
+                            j -= 1;
+                        }
 
-                    if (this.compactingBounds.contains(gridY, gridX + 1)) {
-                        // Check if one right is another polyomino
-                        let next = this.polyominoAt(gridY, gridX + 1);
+                        if (j < 0) {
+                            break;
+                        }
 
-                        if (next !== undefined) {
-                            if (next === polyomino) {
-                                throw new Error('Call to itself');
-                            }
-                            let nextTryMove = this.tryMove(next, direction);
-                            if (nextTryMove !== undefined) {
-                                // We need to move all these in order to move the original
-                                for (let adjacent of nextTryMove) {
-                                    movedPolys.add(adjacent);
+                        // Real work
+                        let gridX = polyomino.location.x + j;
+                        let gridY = polyomino.location.y + i;
+
+                        if (this.compactingBounds.contains(gridY, gridX + 1)) {
+                            // Check if one right is another polyomino
+                            let next = this.polyominoAt(gridY, gridX + 1);
+    
+                            if (next !== undefined) {
+                                if (next === polyomino) {
+                                    throw new Error('Call to itself');
                                 }
-                            } else {
-                                return undefined;
-                            }
-                        } 
-                    } else {
-                        return undefined;
+                                let nextTryMove = this.tryMove(next, direction);
+                                if (nextTryMove !== undefined) {
+                                    // We need to move all these in order to move the original
+                                    for (let adjacent of nextTryMove) {
+                                        movedPolys.add(adjacent);
+                                    }
+                                } else {
+                                    this.cache.set(polyomino, undefined);
+                                    return undefined;
+                                }
+                            } 
+                        } else {
+                            this.cache.set(polyomino, undefined);
+                            return undefined;
+                        }
+
+                        // Skip full grids
+                        while (j >= 0 && polyomino.grid[j][i]) {
+                            j -= 1;
+                        }
                     }
                 }
                 // If we reached here it is movable
                 movedPolys.add(polyomino);
+
+                // cache
+                this.cache.set(polyomino, movedPolys);
+
                 return movedPolys;
             }
             case Direction.TOP: {
                 let movedPolys = new Set(); 
 
                 for (let j = 0; j < polyomino.stepWidth; j += 1) {
-                    // Find rightmost filled square in that height
                     let i = polyomino.stepHeight - 1;
-                    while (!polyomino.grid[j][i]) {
-                        i -= 1;
-                    }
 
-                    let gridX = polyomino.location.x + j;
-                    let gridY = polyomino.location.y + i;
+                    while (i >= 0) {
+                        // Skip empty grids
+                        while (i >= 0 && !polyomino.grid[j][i]) {
+                            i -= 1;
+                        }
 
-                    if (this.compactingBounds.contains(gridY + 1, gridX)) {
-                        // Check if one right is another polyomino
-                        let next = this.polyominoAt(gridY + 1, gridX);
+                        if (i < 0) {
+                            break;
+                        }
 
-                        if (next !== undefined) {
-                            if (next === polyomino) {
-                                throw new Error('Call to itself');
-                            }
-                            let nextTryMove = this.tryMove(next, direction);
-                            if (nextTryMove !== undefined) {
-                                // We need to move all these in order to move the original
-                                for (let adjacent of nextTryMove) {
-                                    movedPolys.add(adjacent);
+                        // Real work
+                        let gridX = polyomino.location.x + j;
+                        let gridY = polyomino.location.y + i;
+
+                        if (this.compactingBounds.contains(gridY + 1, gridX)) {
+                            // Check if one right is another polyomino
+                            let next = this.polyominoAt(gridY + 1, gridX);
+    
+                            if (next !== undefined) {
+                                if (next === polyomino) {
+                                    throw new Error('Call to itself');
                                 }
-                            } else {
-                                return undefined;
-                            }
-                        } 
-                    } else {
-                        return undefined;
+                                let nextTryMove = this.tryMove(next, direction);
+                                if (nextTryMove !== undefined) {
+                                    // We need to move all these in order to move the original
+                                    for (let adjacent of nextTryMove) {
+                                        movedPolys.add(adjacent);
+                                    }
+                                } else {
+                                    this.cache.set(polyomino, undefined);
+                                    return undefined;
+                                }
+                            } 
+                        } else {
+                            this.cache.set(polyomino, undefined);
+                            return undefined;
+                        }
+                        
+                        while (i >= 0 && polyomino.grid[j][i]) {
+                            i -= 1;
+                        }
                     }
                 }
                 // If we reached here it is movable
                 movedPolys.add(polyomino);
+
+                // cache
+                this.cache.set(polyomino, movedPolys);
+
                 return movedPolys;
             }
             case Direction.RIGHT: {
                 let movedPolys = new Set(); 
 
                 for (let i = 0; i < polyomino.stepHeight; i += 1) {
-                    // Find rightmost filled square in that height
                     let j = 0;
-                    while (!polyomino.grid[j][i]) {
-                        j += 1;
-                    }
 
-                    let gridX = polyomino.location.x + j;
-                    let gridY = polyomino.location.y + i;
+                    while (j < polyomino.stepWidth) {
+                        // Skip empty grids
+                        while (j <= polyomino.stepWidth - 1 && !polyomino.grid[j][i]) {
+                            j += 1;
+                        }
 
-                    if (this.compactingBounds.contains(gridY, gridX - 1)) {
-                        // Check if one right is another polyomino
-                        let next = this.polyominoAt(gridY, gridX - 1);
+                        if (j > polyomino.stepWidth - 1) {
+                            break;
+                        }
 
-                        if (next !== undefined) {
-                            if (next === polyomino) {
-                                throw new Error('Call to itself');
-                            }
-                            let nextTryMove = this.tryMove(next, direction);
-                            if (nextTryMove !== undefined) {
-                                // We need to move all these in order to move the original
-                                for (let adjacent of nextTryMove) {
-                                    movedPolys.add(adjacent);
+                        // Real work
+                        let gridX = polyomino.location.x + j;
+                        let gridY = polyomino.location.y + i;
+    
+                        if (this.compactingBounds.contains(gridY, gridX - 1)) {
+                            // Check if one right is another polyomino
+                            let next = this.polyominoAt(gridY, gridX - 1);
+    
+                            if (next !== undefined) {
+                                if (next === polyomino) {
+                                    throw new Error('Call to itself');
                                 }
-                            } else {
-                                return undefined;
-                            }
-                        } 
-                    } else {
-                        return undefined;
+                                let nextTryMove = this.tryMove(next, direction);
+                                if (nextTryMove !== undefined) {
+                                    // We need to move all these in order to move the original
+                                    for (let adjacent of nextTryMove) {
+                                        movedPolys.add(adjacent);
+                                    }
+                                } else {
+                                    this.cache.set(polyomino, undefined);
+                                    return undefined;
+                                }
+                            } 
+                        } else {
+                            this.cache.set(polyomino, undefined);
+                            return undefined;
+                        }
+
+                        // Skip full grids
+                        while (j <= polyomino.stepWidth - 1 && polyomino.grid[j][i]) {
+                            j += 1;
+                        }
                     }
                 }
                 // If we reached here it is movable
                 movedPolys.add(polyomino);
+
+                // cache
+                this.cache.set(polyomino, movedPolys);
+
                 return movedPolys;
             }
             case Direction.BOTTOM: {
                 let movedPolys = new Set(); 
 
                 for (let j = 0; j < polyomino.stepWidth; j += 1) {
-                    // Find rightmost filled square in that height
                     let i = 0;
-                    while (!polyomino.grid[j][i]) {
-                        i += 1;
-                    }
 
-                    let gridX = polyomino.location.x + j;
-                    let gridY = polyomino.location.y + i;
+                    while (i < polyomino.stepHeight) {
+                        // Skip empty grids
+                        while (i <= polyomino.stepHeight - 1 && !polyomino.grid[j][i]) {
+                            i += 1;
+                        }
 
-                    if (this.compactingBounds.contains(gridY - 1, gridX)) {
-                        // Check if one right is another polyomino
-                        let next = this.polyominoAt(gridY - 1, gridX);
+                        if (i > polyomino.stepHeight - 1) {
+                            break;
+                        }
 
-                        if (next !== undefined) {
-                            if (next === polyomino) {
-                                throw new Error('Call to itself');
-                            }
-                            let nextTryMove = this.tryMove(next, direction);
-                            if (nextTryMove !== undefined) {
-                                // We need to move all these in order to move the original
-                                for (let adjacent of nextTryMove) {
-                                    movedPolys.add(adjacent);
+                        // Real work
+                        let gridX = polyomino.location.x + j;
+                        let gridY = polyomino.location.y + i;
+
+                        if (this.compactingBounds.contains(gridY - 1, gridX)) {
+                            // Check if one right is another polyomino
+                            let next = this.polyominoAt(gridY - 1, gridX);
+
+                            if (next !== undefined) {
+                                if (next === polyomino) {
+                                    throw new Error('Call to itself');
                                 }
-                            } else {
-                                return undefined;
-                            }
-                        } 
-                    } else {
-                        return undefined;
-                    }
+                                let nextTryMove = this.tryMove(next, direction);
+                                if (nextTryMove !== undefined) {
+                                    // We need to move all these in order to move the original
+                                    for (let adjacent of nextTryMove) {
+                                        movedPolys.add(adjacent);
+                                    }
+                                } else {
+                                    this.cache.set(polyomino, undefined);
+                                    return undefined;
+                                }
+                            } 
+                        } else {
+                            this.cache.set(polyomino, undefined);
+                            return undefined;
+                        }
+
+                        // Skip full grids
+                        while (i <= polyomino.stepHeight - 1 && polyomino.grid[j][i]) {
+                            i += 1;
+                        }
+                    }                    
                 }
                 // If we reached here it is movable
                 movedPolys.add(polyomino);
+
+                // cache
+                this.cache.set(polyomino, movedPolys);
+
                 return movedPolys;
             }
             default: 
@@ -363,11 +453,11 @@ export class CompactionGrid {
      * Calculates the bounding rectangle then rounds the bounds
      * @param { Polyomino[] } polyominos
      * @param { number } gridStep
-     * @returns { BoundingRectangle }
+     * @returns { Rectangle }
      */
     static getRoundedBoundingRectangle(polyominos, gridStep) {
         // bounding rectangle by their current positions
-        let boundingRectangle = new BoundingRectangle(
+        let boundingRectangle = new Rectangle(
             Number.MAX_VALUE,
             Number.MAX_VALUE,
             -Number.MAX_VALUE,

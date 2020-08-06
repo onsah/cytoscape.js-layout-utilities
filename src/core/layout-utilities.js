@@ -1,4 +1,4 @@
-import { pack } from "./packing";
+import { pack, incrementalSinglePack } from "./packing";
 
 /**
  * @param { * } cy 
@@ -355,6 +355,14 @@ var layoutUtilities = function (cy, options) {
    */
   instance.packComponents = function (components) {    
     return pack(components, options);
+  };
+
+  /**
+   * 
+   * @param { import("./typedef").Component[] } components 
+   */
+  instance.stepPack = function (components) {
+    return incrementalSinglePack(components, options);
   };
 
   return instance;

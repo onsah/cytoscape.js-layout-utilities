@@ -51,7 +51,7 @@ export class Point {
     }
 }
 
-export class BoundingRectangle {
+export class Rectangle {
 
     /**
      * @param { number } x1
@@ -75,13 +75,24 @@ export class BoundingRectangle {
 
     /**
      * Expands bounds of `this` so that it contains 'other'
-     * @param { import('../typedef').IBoundingRectangle } other 
+     * @param { import('../typedef').IRectangle } other 
      */
     include(other) {
         this.x1 = Math.min(this.x1, other.x1);
         this.y1 = Math.min(this.y1, other.y1);
         this.x2 = Math.max(this.x2, other.x2);
         this.y2 = Math.max(this.y2, other.y2);
+    }
+
+    /**
+     * 
+     * @param { Rectangle } other 
+     */
+    includes(other) {
+        return this.x1 <= other.x1 &&
+            this.y1 <= other.y1 &&
+            this.x2 >= other.x2 &&
+            this.y2 >= other.y2;
     }
 
     /**
@@ -104,6 +115,13 @@ export class BoundingRectangle {
     get height() {
         // +1 because y2 is inclusive
         return this.y2 - this.y1 + 1;
+    }
+
+    get absoluteCenter() {
+        return new Point(
+            this.x1 + (this.width / 2),
+            this.y1 + (this.height / 2),
+        );
     }
 }
 

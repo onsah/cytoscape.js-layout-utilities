@@ -17,6 +17,8 @@
   <script src="cytoscape-layout-utilities.js"></script>
 
   <script src="https://unpkg.com/cytoscape-view-utilities/cytoscape-view-utilities.js"></script>
+  <!-- TODO: remove after tested with xml graphs-->
+  <script src="https://unpkg.com/cytoscape-graphml/cytoscape-graphml.js"></script>
   <style>
     body {
       font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
@@ -149,6 +151,34 @@
     }
   </style>
   <script>
+    function placeRandom(n, size) {
+      let dimension = Math.ceil(Math.sqrt(n));
+      let grid = Array.from(
+        { length: dimension },
+        () => new Array(dimension).fill(false)
+      );
+      let places = { };
+
+      for (let i = 0; i < n; ++i) {
+        while (true) {
+          let x = Math.floor(Math.random() * dimension);
+          let y = Math.floor(Math.random() * dimension);
+          if (!grid[y][x]) {
+            places[i] = { x, y };
+            grid[y][x] = true;
+            break;
+          }
+        }
+      }
+
+      for (let p of Object.values(places)) {
+        p.x *= size;
+        p.y *= size;
+      }
+
+      return places;
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       var cy = window.cy = cytoscape({
         container: document.getElementById('cy'),
@@ -191,7 +221,7 @@
           }
         ],
 
-        elements: {
+        /* elements: {
           nodes: [
             { data: { id: 'n7', name: 'n7' } },
             { data: { id: 'n6', name: 'n6' } },
@@ -251,12 +281,30 @@
 
             //{ data: { source: "n19", target: "n21" } }
           ]
-        },
+        }, */
         wheelSensitivity: 0.2
       });
 
+      $.getJSON("temp/infiniteRecursion.json", (data) => {
+        cy.json({ elements: data });
+      });
+
+
+      /* let disconnected = 1000;
+
+      for (let i = 0; i < disconnected; ++i) {
+        cy.add({ group: 'nodes', data: { id: i, name: "" + i, } });
+      }
+
       var api = cy.layoutUtilities({ desiredAspectRatio: 2 });
       var api2 = cy.viewUtilities();
+
+      let randomPlaces = placeRandom(disconnected, 100);
+
+      cy.layout({
+        name: 'preset',
+        positions: randomPlaces,
+      }).run(); */
 
       var layout = cy.layout({
         name: 'cose-bilkent',
@@ -284,7 +332,7 @@
             polyominoGridSizeFactor: parseFloat($('#gridSizeFactor').val()),
             utilityFunction: parseInt($('#utilityFunctionType').val()),
             componentSpacing: parseInt($('#componentSpacing').val()),
-            randomize: !document.getElementById('incremental').checked,
+            randomize: document.getElementById('randomize').checked,
           }
         );
         var components = cy.elements(":visible").components();
@@ -364,7 +412,69 @@
         }
       });
 
+      $("#stepPack").click(() => {
+        let iteration = document.getElementById('iteration').value || 1;
+        var components = cy.elements(":visible").components();
 
+        if (typeof stepPackCallback === "undefined") {
+          var packingApi = cy.layoutUtilities(
+            {
+              desiredAspectRatio: parseFloat($('#desiredAspectRatio').val()),
+              polyominoGridSizeFactor: parseFloat($('#gridSizeFactor').val()),
+              utilityFunction: parseInt($('#utilityFunctionType').val()),
+              componentSpacing: parseInt($('#componentSpacing').val()),
+              randomize: document.getElementById('randomize').checked,
+            }
+          );
+          var subgraphs = [];
+          components.forEach(function (component) {
+            var subgraph = {};
+            subgraph.nodes = [];
+            subgraph.edges = [];
+
+            component.edges().forEach(function (edge) {
+              var boundingBox = edge.boundingBox();
+              subgraph.edges.push({ startX: boundingBox.x1, startY: boundingBox.y1, endX: boundingBox.x2, endY: boundingBox.y2 });
+            });
+            component.nodes().forEach(function (node) {
+              var boundingBox = node.boundingBox();
+              subgraph.nodes.push({ x: boundingBox.x1, y: boundingBox.y1, width: boundingBox.w, height: boundingBox.h });
+            });
+
+            subgraphs.push(subgraph);
+          });
+          stepPackCallback = packingApi.stepPack(subgraphs);
+        }
+
+        let result = { shifts: Array.from({ length: components.length }, () => ({ dx: 0, dy: 0 })) };
+
+        for (let i = 0; i < iteration; ++i) {
+          let stepResult = stepPackCallback();
+  
+          if (!stepResult || !stepResult.shifts) {
+            console.log('Couldn\'t compact');
+          } else {
+            for (let i = 0; i < result.shifts.length; ++i) {
+              result.shifts[i].dx += stepResult.shifts[i].dx;
+              result.shifts[i].dy += stepResult.shifts[i].dy;
+            }
+          }
+        }
+
+        components.forEach(function (component, index) {
+              component.nodes().layout({
+                name: 'preset',
+                animate: true,
+                fit: false,
+                transform: (node) => {
+                  let position = {};
+                  position.x = node.position('x') + result.shifts[index].dx;
+                  position.y = node.position('y') + result.shifts[index].dy;
+                  return position;
+                }
+              }).run();
+            });
+      });
     });
   </script>
 </head>
@@ -397,7 +507,10 @@
 
     <button id="polyominoPack" class="button">Pack components</button>
     <br />
-    <input type="checkbox" id="incremental"> <label for="incremental"> incremental </label>
+    <button id="stepPack" class="button"> Step Pack </button>
+    <input id="iteration" type="number">
+    <br />
+    <input type="checkbox" id="randomize"> <label for="randomize"> Randomize </label>
     <br />
     <!-- <input  style="cursor: pointer; color: brown">Pack components</button><br/><br/> -->
     <form>
