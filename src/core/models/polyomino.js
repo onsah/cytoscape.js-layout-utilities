@@ -39,12 +39,19 @@ export class Polyomino {
                 this.grid[i][j] = false;
             }
         }
-        /**the grid cell coordinates where the polyomino was placed. Denotes center */
-        this.location = new Point(-1, -1); 
+        /**the grid cell coordinates where the polyomino was placed. Denotes center for only random packing */
+        this.location = new Point(this.stepX1, this.stepY1); 
         /** inner center */
         this.center = new Point(Math.floor(this.stepWidth / 2), Math.floor(this.stepHeight / 2));// center of polyomino
         this.numberOfOccupiredCells = 0;
-
+        // Used for caching
+        this.mRect = new Rectangle(
+            this.location.x,
+            this.location.y,
+            this.location.x + this.stepWidth - 1,
+            this.location.y + this.stepHeight - 1
+        );
+            
         if (typeof componentAndRect !== 'undefined') {
             this.fill(componentAndRect.component, componentAndRect.boundingRect);
         }
@@ -172,6 +179,53 @@ export class Polyomino {
             polyx1 + this.stepWidth - 1,
             polyy1 + this.stepHeight - 1 
         );
+    }
+
+    /**
+     * Used by quadtree
+     * @returns { Rectangle }
+     */
+    intoRectangle() {
+        return this.mRect;
+    }
+
+    /**
+     * 
+     * @param { number } x 
+     * @param { number } y
+     * @returns { boolean } 
+     */
+    contains(x, y) {
+        return this.mRect.contains(y, x);
+    }
+
+    /**
+     * Changes the position of polyomino
+     * @param { import('../typedef').IPoint } change 
+     * @returns { void }
+     */
+    move(change) {
+        this.location.x += change.x;
+        this.location.y += change.y;
+
+        this.mRect.x1 += change.x;
+        this.mRect.x2 += change.x;
+        this.mRect.y1 += change.y;
+        this.mRect.y2 += change.y;
+    }
+
+    /**
+     * Sets the position by ignoring the previous value
+     * @param { import('../typedef').IPoint } position 
+     */
+    set(position) {
+        this.location.x = position.x;
+        this.location.y = position.y;
+
+        this.mRect.x1 = position.x;
+        this.mRect.x2 = position.x + this.stepWidth - 1;
+        this.mRect.y1 = position.y;
+        this.mRect.y2 = position.y + this.stepHeight - 1;
     }
 
     /**

@@ -1,5 +1,5 @@
 import { getCenter, getBoundingRectangle } from './general-utils';
-import { CompactionGrid, Direction } from './models/compaction-grid';
+import { CompactionGrid, Direction } from './models/compaction/compaction-grid';
 import { Polyomino } from './models/polyomino';
 import { Grid } from './models/grid';
 
@@ -201,6 +201,8 @@ export function incrementalPackImpl(polyominos, gridStep) {
         dy: (p.location.y - p.stepY1) * gridStep,
       })
     );
+
+    // compactionGrid.quadTree.mRoot.print(0);
 
     return { shifts };
 }

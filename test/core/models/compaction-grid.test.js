@@ -1,6 +1,7 @@
 import { Polyomino } from "../../../src/core/models/polyomino";
-import { CompactionGrid, Direction } from "../../../src/core/models/compaction-grid";
 import assert from "assert";
+import { Rectangle } from "../../../src/core/models/common";
+import { CompactionGrid, Direction } from "../../../src/core/models/compaction/compaction-grid";
 
 describe('class CompactionGrid', () => {
     it('should calculate grid area', () => {
@@ -26,13 +27,6 @@ describe('class CompactionGrid', () => {
 
         assert.strictEqual(compactionGrid.width, Math.floor(200 / gridStep), "dimensions are wrong");
         assert.strictEqual(compactionGrid.height, Math.floor(200 / gridStep), "dimensions are wrong");
-
-        // Check if grid filled correctly
-        for (let i = 0; i < 10; ++i) {
-            assert.strictEqual(compactionGrid.getGridAt(10, i + 10), 0, `iteration ${i}`);
-            assert.strictEqual(compactionGrid.getGridAt(i, 9), 1, `iteration ${i}`);
-            assert.strictEqual(compactionGrid.getGridAt(i + 10, i), 2, `iteration ${i}`);
-        }
     });
 
     const gridStep = 10;
@@ -53,13 +47,13 @@ describe('class CompactionGrid', () => {
     it('should compact left', () => {
         let compactionGrid = new CompactionGrid(polyominos, gridStep);
         
-        assert.strictEqual(compactionGrid.getGridAt(0, 0), 0);
-        
         for (let i = 0; i < 5; ++i) {
             assert(compactionGrid.tryCompact(Direction.LEFT), `Compaction: ${i}`);
             assert.strictEqual(compactionGrid.compactingBounds.x1, (i + 1), `Compaction ${i}`);
         }
 
+        assert.deepStrictEqual(polyominos[0].intoRectangle(), new Rectangle(5, 0, 9, 4));
+        // assert.deepStrictEqual(compactionGrid.quadTree.findCollisionsPoint({ x: 5, y: 1 }), [ polyominos[0] ]);
         assert(!compactionGrid.tryCompact(Direction.LEFT), `Shouldn't compact`);
         assert.strictEqual(compactionGrid.compactingBounds.x1, 5);
 

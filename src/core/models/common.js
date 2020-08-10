@@ -1,4 +1,4 @@
-import { Direction } from './compaction-grid';
+import { Direction } from './compaction/compaction-grid';
 
 export class Point {
     /**
@@ -96,6 +96,17 @@ export class Rectangle {
     }
 
     /**
+     * Returns if the two rectangle intersects
+     * @param { Rectangle } other 
+     */
+    intersects(other) {
+        return this.x2 >= other.x1 &&
+            this.x1 <= other.x2 &&
+            this.y2 >= other.y1 &&
+            this.y1 <= other.y2;
+    }
+
+    /**
      * Returns if the position is contained in the BoundingRectangle
      * @param { number } i 
      * @param { number } j 
@@ -105,7 +116,21 @@ export class Rectangle {
             i <= this.y2 &&
             j >= this.x1 &&
             j <= this.x2;
-    }       
+    }  
+    
+    /**
+     * Moves the rectangle by the amount of point
+     * @param { import('../typedef').IPoint } point 
+     * @returns { Rectangle }
+     */
+    move(point) {
+        this.x1 += point.x;
+        this.x2 += point.x;
+        this.y1 += point.y;
+        this.y2 += point.y;
+
+        return this;
+    }
 
     get width() {
         // +1 because x2 is inclusive
@@ -119,8 +144,10 @@ export class Rectangle {
 
     get absoluteCenter() {
         return new Point(
-            this.x1 + (this.width / 2),
-            this.y1 + (this.height / 2),
+            /* this.x1 + (this.width / 2),
+            this.y1 + (this.height / 2), */
+            (this.x2 + this.x1) / 2,
+            (this.y2 + this.y1) / 2
         );
     }
 }

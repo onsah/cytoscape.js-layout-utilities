@@ -1,10 +1,10 @@
 import assert from 'assert';
 import { Polyomino } from'../../src/core/models/polyomino';
-import { BoundingRectangle } from '../../src/core/models/common';
+import { Rectangle } from '../../src/core/models/common';
 
 describe('class BoundingRectangle', () => {
     it('checks include', () => {
-        let br = new BoundingRectangle(
+        let br = new Rectangle(
             Number.MAX_VALUE, Number.MAX_VALUE,
             -Number.MAX_VALUE, -Number.MAX_VALUE
         );

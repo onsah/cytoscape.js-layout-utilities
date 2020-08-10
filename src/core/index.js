@@ -5,7 +5,7 @@
 
   // registers the extension on a cytoscape lib ref
   /**
-   * @param {typeof globalThis.cytoscape} cytoscape
+   * @param {globalThis.cytoscape} cytoscape
    */
   var register = function (cytoscape) {
 

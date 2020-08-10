@@ -28,6 +28,9 @@ let config = {
         compress: {
           warnings: false,
           drop_console: false,
+        },
+        uglifyOptions: {
+          output: { comments: false }
         }
       })
     ] : []
