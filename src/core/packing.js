@@ -61,7 +61,7 @@ function nonIncrementalPack(components, options) {
     mainGrid.placePolyomino(polyominos[0], mainGrid.center.x, mainGrid.center.y);
 
     //for every polyomino try placeing it in first neighbors and calculate utility if none then second neighbor and so on..
-    for (var i = 1; i < polyominos.length; i++) {
+    for (let i = 1; i < polyominos.length; i++) {
       var fullnessMax = 0;
       var adjustedFullnessMax = 0;
       var weigthFullnessAspectRatio = 0;
@@ -74,6 +74,7 @@ function nonIncrementalPack(components, options) {
       while (!placementFound) {
 
         cells = mainGrid.getDirectNeighbors(cells, Math.ceil(Math.max(polyominos[i].stepWidth, polyominos[i].stepHeight) / 2));
+        
         for (let cell of cells) {
           if (mainGrid.tryPlacingPolyomino(polyominos[i], cell.x, cell.y)) {
             placementFound = true;
@@ -157,9 +158,12 @@ function nonIncrementalPack(components, options) {
 /**
  * 
  * @param { import('./typedef').Component[] } components 
- * @param { import('./typedef').Options } options 
+ * @param {{ 
+ *    componentSpacing: number;
+ *    polyominoGridSizeFactor: number 
+ * }} options 
  */
-function incrementalPack(components, options) {
+export function incrementalPack(components, options) {
     let gridStep = calculateGridStep(components, options);
     console.log(`gridStep: ${gridStep}`);
 
@@ -185,13 +189,15 @@ export function incrementalPackImpl(polyominos, gridStep) {
       const directions = Object.values(Direction);
       /** @type { boolean[] } */
       let compacted = [];
-      for (let dir of directions) {
-        compacted[dir] = true;
+      for (let i = 0; i < directions.length; ++i) {
+          const dir = directions[i];
+          compacted[dir] = true;
       }
 
       while (compacted.some(b => b)) {
-        for (let dir of directions) {
-          compacted[dir] = compactionGrid.tryCompact(dir);
+        for (let i = 0; i < directions.length; ++i) {
+            const dir = directions[i];
+            compacted[dir] = compactionGrid.tryCompact(dir);
         }
       }
     }
@@ -276,7 +282,7 @@ function calculatePackingCenter(components, shifts) {
 
 /**
  * @param { import('./typedef').Component[] } components 
- * @param { import('./typedef').Options } options 
+ * @param { { polyominoGridSizeFactor: number } } options 
  */
 function calculateGridStep(components, options) {
     let gridStep = 0;
@@ -318,7 +324,7 @@ function addSpacing(components, spacingAmount) {
  * @param { number } gridStep
  * @returns {{ polyominos: Polyomino[], gridWidth: number, gridHeight: number, }}
  */
-function createPolyominos(components, gridStep) {
+export function createPolyominos(components, gridStep) {
     let polyominos = [];
     let gridWidth = 0, gridHeight = 0;
 

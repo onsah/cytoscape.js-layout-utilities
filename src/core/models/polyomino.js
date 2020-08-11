@@ -68,48 +68,40 @@ export class Polyomino {
             stepY1 = Math.floor(boundingRect.y1 / this.gridStep);
 
         //fill nodes to polyomino cells
-        // for-of is faster than forEach https://jsperf.com/for-of-vs-foreach/10
-        for (let node of component.nodes) {
-            /* //top left cell of a node
-            var topLeftX = Math.floor((node.x - boundingRect.x1) / this.gridStep);
-            var topLeftY = Math.floor((node.y - boundingRect.y1) / this.gridStep);
-    
-            //bottom right cell of a node
-            var bottomRightX = Math.floor((node.x + node.width - boundingRect.x1) / this.gridStep);
-            var bottomRightY = Math.floor((node.y + node.height - boundingRect.y1) / this.gridStep); */
-    
-            
-    
+        for (let n = 0; n < component.nodes.length; ++n) {
+            const node = component.nodes[n];
             let topLeftX = Math.floor(node.x / this.gridStep) - stepX1,
                 topLeftY = Math.floor(node.y / this.gridStep) - stepY1,
                 bottomRightX = Math.floor((node.x + node.width - 1) / this.gridStep) - stepX1,
                 bottomRightY = Math.floor((node.y + node.height - 1) / this.gridStep) - stepY1;
                 
             //all cells between topleft cell and bottom right cell should be occupied
-            for (var i = topLeftX; i <= bottomRightX; i++) {
-                for (var j = topLeftY; j <= bottomRightY; j++) {
+            for (let i = topLeftX; i <= bottomRightX; i++) {
+                for (let j = topLeftY; j <= bottomRightY; j++) {
                     this.grid[i][j] = true;
                 }
             }
         }
 
         //fill cells where edges pass 
-        for (let edge of component.edges) {
+        for (let i = 0; i < component.edges.length; ++i) {
+            const edge = component.edges[i];
             let p0 = new Point(
-                    (edge.startX - boundingRect.x1) / this.gridStep,
-                    (edge.startY - boundingRect.y1) / this.gridStep,
+                    (edge.startX - boundingRect.x1),
+                    (edge.startY - boundingRect.y1),
                 ),
                 p1 = new Point(
-                    (edge.endX - boundingRect.x1) / this.gridStep,
-                    (edge.endY - boundingRect.y1) / this.gridStep,
+                    (edge.endX - boundingRect.x1),
+                    (edge.endY - boundingRect.y1),
                 );
             //for every edge calculate the super cover 
             // This seems to work better
             var points = betterLineSupercover({ min: p0, max: p1 });
             // var points = LineSuperCover(p0, p1);
-            for (let point of points) {
-                let indexX = Math.floor(point.x);
-                let indexY = Math.floor(point.y);
+            for (let j = 0; j < points.length; ++j) {
+                const point = points[j];
+                let indexX = Math.floor(point.x / this.gridStep);
+                let indexY = Math.floor(point.y / this.gridStep);
                 if (indexX >= 0 && indexX < this.stepWidth && indexY >= 0 && indexY < this.stepHeight) {
                     this.grid[indexX][indexY] = true;
                 }

@@ -82,18 +82,22 @@ export function uniqueArray(ar) {
  */
 export function getBoundingRectangle(component) {
     let x1 = Number.MAX_VALUE, x2 = -Number.MAX_VALUE, y1 = Number.MAX_VALUE, y2 = -Number.MAX_VALUE;
-    for (let node of component.nodes) {
-      if (node.x <= x1) x1 = node.x;
-      if (node.y <= y1) y1 = node.y;
-      if ((node.x + node.width - 1) >= x2) x2 = (node.x + node.width - 1);
-      if ((node.y + node.height - 1) >= y2) y2 = (node.y + node.height - 1);
+
+    for (let i = 0; i < component.nodes.length; ++i) {
+        const node = component.nodes[i];
+
+        if (node.x <= x1) x1 = node.x;
+        if (node.y <= y1) y1 = node.y;
+        if ((node.x + node.width - 1) >= x2) x2 = (node.x + node.width - 1);
+        if ((node.y + node.height - 1) >= y2) y2 = (node.y + node.height - 1);
     }
 
-    for (let edge of component.edges) {
-      if (edge.startX <= x1) x1 = edge.startX;
-      if (edge.startY <= y1) y1 = edge.startY;
-      if (edge.endX >= x2) x2 = edge.endX;
-      if (edge.endY >= y2) y2 = edge.endY;
+    for (let i = 0; i < component.edges.length; ++i) {
+        const edge = component.edges[i];
+        if (edge.startX <= x1) x1 = edge.startX;
+        if (edge.startY <= y1) y1 = edge.startY;
+        if (edge.endX >= x2) x2 = edge.endX;
+        if (edge.endY >= y2) y2 = edge.endY;
     }
 
     return new Rectangle(x1, y1, x2, y2);

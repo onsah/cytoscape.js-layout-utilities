@@ -1,6 +1,7 @@
 import { Polyomino } from "../../src/core/models/polyomino";
-import { incrementalPackImpl } from "../../src/core/packing";
+import { incrementalPackImpl, incrementalPack } from "../../src/core/packing";
 import assert from "assert";
+import { Rectangle } from "../../src/core/models/common";
 
 describe('incremental packing', () => {
     const gridStep = 10;

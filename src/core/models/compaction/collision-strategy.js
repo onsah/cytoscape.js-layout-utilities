@@ -81,7 +81,9 @@ class NaiveCollisionStrategy {
     findCollisions(rectangle) {
         let result = [];
 
-        for (let poly of this.mPolyominos) {
+        for (let i = 0; i < this.mPolyominos.length; i += 1) {
+            const poly = this.mPolyominos[i];
+
             if (rectangle.intersects(poly.intoRectangle())) {
                 result.push(poly);
             }
@@ -105,7 +107,8 @@ class QuadTreeStrategy {
          */
         this.mQuadTree = new QuadTree(this.mBounds);
 
-        for (let poly of this.mPolyominos) {
+        for (let i = 0; i < this.mPolyominos.length; ++i) {
+            const poly = this.mPolyominos[i];
             this.mQuadTree.add(poly);
         }
     }

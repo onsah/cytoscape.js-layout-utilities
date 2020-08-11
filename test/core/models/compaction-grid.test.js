@@ -2,6 +2,7 @@ import { Polyomino } from "../../../src/core/models/polyomino";
 import assert from "assert";
 import { Rectangle } from "../../../src/core/models/common";
 import { CompactionGrid, Direction } from "../../../src/core/models/compaction/compaction-grid";
+import { createPolyominos, incrementalPackImpl } from "../../../src/core/packing";
 
 describe('class CompactionGrid', () => {
     it('should calculate grid area', () => {
@@ -78,5 +79,121 @@ describe('class CompactionGrid', () => {
         assert(!compactionGrid.tryCompact(Direction.TOP), 'Shouldn\'t compact');
         assert(!compactionGrid.tryCompact(Direction.RIGHT), 'Shouldn\'t compact');
         assert(!compactionGrid.tryCompact(Direction.BOTTOM), 'Shouldn\'t compact');
-    })
+    });
+
+    it('should compact components with edges', () => {
+        /** @type { import("../../../src/core/typedef").Component[] } */
+        let components = [
+            {
+                nodes: [ 
+                    {
+                        x: 0,
+                        y: 200,
+                        width: 50,
+                        height: 50,
+                    },
+                    {
+                        x: 200,
+                        y: 200,
+                        width: 50,
+                        height: 50,
+                    }
+                ],
+                edges: [
+                    {
+                        startX: 50,
+                        endX: 200,
+                        startY: 225,
+                        endY: 225
+                    }
+                ]
+            },
+            {
+                nodes: [
+                    {
+                        x: 100,
+                        y: 0,
+                        width: 50,
+                        height: 50
+                    }
+                ],
+                edges: []
+            },
+            {
+                nodes: [
+                    {
+                        x: 100,
+                        y: 75,
+                        width: 50,
+                        height: 50
+                    }
+                ],
+                edges: []
+            },
+            {
+                nodes: [
+                    {
+                        x: 100,
+                        y: 150,
+                        width: 50,
+                        height: 50
+                    }
+                ],
+                edges: []
+            },
+        ];
+
+        let { polyominos } = createPolyominos(components, 1);
+
+        let { shifts } = incrementalPackImpl(polyominos, 1);
+
+        assert.deepStrictEqual(shifts, [ 
+            { dx: 0, dy: -37 },
+            { dx: 0, dy: 38 },
+            { dx: 0, dy: 13 },
+            { dx: 0, dy: -12 }
+        ]);
+    });
+
+    it('should compact with diagonal edges', () => {
+        /** @type { import("../../../src/core/typedef").Component[] } */
+        let components = [
+            {
+                nodes: [
+                    {
+                        x: 0, y: 200, width: 50, height: 50
+                    },
+                    { 
+                        x: 200, y: 125, width: 50, height: 50
+                    }
+                ],
+                edges: [
+                    {
+                        startX: 50, startY: 225, endX: 200, endY: 150
+                    }
+                ]
+            },
+            {
+                nodes: [
+                    {
+                        x: 100,
+                        y: 0,
+                        width: 50,
+                        height: 100
+                    }
+                ],
+                edges: []
+            }
+        ];
+
+
+        let { polyominos } = createPolyominos(components, 1);
+
+        let { shifts } = incrementalPackImpl(polyominos, 1);
+
+        assert.deepStrictEqual(shifts, [
+            { dx: 0, dy: -37 },
+            { dx: 0, dy: 38 }
+        ]);
+    });
 });
