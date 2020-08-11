@@ -1,4 +1,4 @@
-import { Rectangle, Point } from "../common";
+import { Rectangle } from "../common";
 import { Polyomino } from "../polyomino";
 import assert from "assert";
 import { getCollisionStrategy, CollisionStrategyType } from "./collision-strategy";
