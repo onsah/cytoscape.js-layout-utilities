@@ -1,6 +1,5 @@
 import { Rectangle, Point } from "../common";
 import { Polyomino } from "../polyomino";
-import { QuadTree } from "../../quad-tree/quad-tree";
 import assert from "assert";
 import { getCollisionStrategy, CollisionStrategyType } from "./collision-strategy";
 
@@ -101,9 +100,10 @@ export class CompactionGrid {
 
         let colliding = this.collisionStrategy.findCollisions(boundRect);
 
-        for (let poly of colliding) {
+        for (let i = 0; i < colliding.length; ++i) {
+            let poly = colliding[i];
             let movedPolys = this.tryMove(poly, direction);
-
+    
             if (movedPolys !== undefined) {
                 for (let p of movedPolys) {
                     allMovedPolys.add(p);
@@ -116,35 +116,10 @@ export class CompactionGrid {
         // Apply movement
         for (let movedPoly of allMovedPolys) {
             this.collisionStrategy.move(movedPoly, positionChange);
-            // this.quadTree.move(movedPoly, positionChange);
         }
 
         boundChangeFn(this.compactingBounds);
         return true;
-    }
-
-    /**
-     * Returns the polyomino and its index if there is a polyomino here. Undefined otherwise
-     * This functions assumes there is always only one polyomino at some point. 
-     * @param { number } i y-axis
-     * @param { number } j x-axis
-     */
-    polyominoAt(i, j) {
-        /* return this.compactingBounds.contains(i, j) ?
-            this.quadTree.findCollisionsPoint({ x: j, y: i })
-                .find(p => p.grid[j - p.location.x][i - p.location.y])
-            : undefined; */
-
-        /* return this.compactingBounds.contains(i, j) ?
-            // TODO: move this to polyomino.contains
-            this.polyominos.find(p => 
-                j >= p.location.x &&
-                j <= p.location.x + p.stepWidth - 1 &&
-                i >= p.location.y &&
-                i <= p.location.y + p.stepHeight - 1 &&
-                p.grid[j - p.location.x][i - p.location.y]
-            ) : 
-            undefined; */
     }
 
     /**
@@ -419,9 +394,9 @@ export class CompactionGrid {
             -Number.MAX_VALUE,
             -Number.MAX_VALUE
         );
-  
-        for (let polyomino of polyominos) {
-            boundingRectangle.include(polyomino.stepBoundingRectangle);
+
+        for (let i = 0; i < polyominos.length; ++i) {
+            boundingRectangle.include(polyominos[i].stepBoundingRectangle);
         }
 
         return boundingRectangle;

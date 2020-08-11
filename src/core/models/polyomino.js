@@ -64,6 +64,9 @@ export class Polyomino {
      * Rectangle bounding component, can be calculated from component but taken as argument since it is already calcualated
      */
     fill(component, boundingRect) {
+        let stepX1 = Math.floor(boundingRect.x1 / this.gridStep),
+            stepY1 = Math.floor(boundingRect.y1 / this.gridStep);
+
         //fill nodes to polyomino cells
         // for-of is faster than forEach https://jsperf.com/for-of-vs-foreach/10
         for (let node of component.nodes) {
@@ -75,8 +78,7 @@ export class Polyomino {
             var bottomRightX = Math.floor((node.x + node.width - boundingRect.x1) / this.gridStep);
             var bottomRightY = Math.floor((node.y + node.height - boundingRect.y1) / this.gridStep); */
     
-            let stepX1 = Math.floor(boundingRect.x1 / this.gridStep),
-                stepY1 = Math.floor(boundingRect.y1 / this.gridStep);
+            
     
             let topLeftX = Math.floor(node.x / this.gridStep) - stepX1,
                 topLeftY = Math.floor(node.y / this.gridStep) - stepY1,
@@ -102,14 +104,14 @@ export class Polyomino {
                     (edge.endY - boundingRect.y1) / this.gridStep,
                 );
             //for every edge calculate the super cover 
-            // TODO: we may use the supercover from the physics simulation
             // This seems to work better
             var points = betterLineSupercover({ min: p0, max: p1 });
+            // var points = LineSuperCover(p0, p1);
             for (let point of points) {
                 let indexX = Math.floor(point.x);
                 let indexY = Math.floor(point.y);
                 if (indexX >= 0 && indexX < this.stepWidth && indexY >= 0 && indexY < this.stepHeight) {
-                    this.grid[Math.floor(point.x)][Math.floor(point.y)] = true;
+                    this.grid[indexX][indexY] = true;
                 }
             }
         }

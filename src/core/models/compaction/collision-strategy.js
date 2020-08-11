@@ -1,6 +1,6 @@
 import { Polyomino } from "../polyomino";
 import { Rectangle } from "../common";
-import { QuadTree } from "../../quad-tree/quad-tree";
+import { QuadTree, Node } from "../../quad-tree/quad-tree";
 
 /**
  * @enum { string }
@@ -127,10 +127,45 @@ class QuadTreeStrategy {
      * @returns { Polyomino | undefined } 
      */
     polyominoAt(y, x) {
-        return this.mBounds.contains(y, x) ?
+        /* return this.mBounds.contains(y, x) ?
             this.mQuadTree.findCollisionsPoint({ x, y })
                 .find(p => p.grid[x - p.location.x][y - p.location.y]) : 
-            undefined;
+            undefined; */
+        return this.polyominoAtImpl(this.mQuadTree.mRoot, y, x);
+    }
+
+    /**
+     * This is actually a bad design because it should be in quad tree but this is a special case for polyominos so it can't be included in QuadTree class
+     * @param { Node<Polyomino> } node 
+     * @param { number } y 
+     * @param { number } x 
+     * @returns { Polyomino | undefined }
+     * TODO: create QuadTreePolyomino class
+     */
+    polyominoAtImpl(node, y, x) {
+        const values = node.mValues;
+        const length = values.length;
+        for (let i = 0; i < length; ++i) {
+            const poly = values[i];
+            if (poly.intoRectangle().contains(y, x) && poly.grid[x - poly.location.x][y - poly.location.y]) {
+                return poly;
+            }
+        }
+
+        if (!node.isLeaf) {
+            for (let i = 0; i < node.mChildren.length; ++i) {
+                let child = node.mChildren[i];
+                // Some edge cases can fail so check if point can be multiple areas
+                if (child.mRectangle.contains(y, x)) {
+                    let result = this.polyominoAtImpl(child, y, x);
+                    if (result !== undefined) {
+                        return result;
+                    }
+                }
+            }
+        }
+
+        return undefined;
     }
 
     /**

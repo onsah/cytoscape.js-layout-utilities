@@ -130,12 +130,12 @@ export function betterLineSupercover(line) {
               error -= ddx;
 
               if (error + errorprev < ddx) {
-                  points.push({ x: p.x, y: p.y - yStep });
+                  points.push({ x: p.x        , y: p.y - yStep });
               } else if (error + errorprev > ddx) {
-                  points.push({ x: p.x - xStep, y: p.y });
+                  points.push({ x: p.x - xStep, y: p.y         });
               } else {
-                  points.push({ x: p.x, y: p.y - yStep });
-                  points.push({ x: p.x - xStep, y: p.y });
+                  points.push({ x: p.x        , y: p.y - yStep });
+                  points.push({ x: p.x - xStep, y: p.y         });
               }
           }
 
@@ -151,15 +151,15 @@ export function betterLineSupercover(line) {
 
           if (error > ddy) {
               p.x += xStep;
-              error -= ddx;
+              error -= ddy;
 
               if (error + errorprev < ddy) {
-                  points.push({ x: p.x - xStep, y: p.y });
+                  points.push({ x: p.x - xStep, y: p.y         });
               } else if (error + errorprev > ddy) {
-                  points.push({ x: p.x, y: p.y - yStep });
+                  points.push({ x: p.x        , y: p.y - yStep });
               } else {
-                  points.push({ x: p.x - xStep, y: p.y });
-                  points.push({ x: p.x, y: p.y - yStep });
+                  points.push({ x: p.x - xStep, y: p.y         });
+                  points.push({ x: p.x        , y: p.y - yStep });
               }
           }
 

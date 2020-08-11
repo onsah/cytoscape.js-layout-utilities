@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 118);
+/******/ 	return __webpack_require__(__webpack_require__.s = 117);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -85,7 +85,7 @@ var getOwnPropertyDescriptor = __webpack_require__(34).f;
 var createNonEnumerableProperty = __webpack_require__(11);
 var redefine = __webpack_require__(12);
 var setGlobal = __webpack_require__(65);
-var copyConstructorProperties = __webpack_require__(83);
+var copyConstructorProperties = __webpack_require__(82);
 var isForced = __webpack_require__(62);
 
 /*
@@ -158,7 +158,7 @@ var shared = __webpack_require__(66);
 var has = __webpack_require__(5);
 var uid = __webpack_require__(55);
 var NATIVE_SYMBOL = __webpack_require__(63);
-var USE_SYMBOL_AS_UID = __webpack_require__(106);
+var USE_SYMBOL_AS_UID = __webpack_require__(105);
 
 var WellKnownSymbolsStore = shared('wks');
 var Symbol = global.Symbol;
@@ -202,7 +202,7 @@ module.exports =
   // eslint-disable-next-line no-new-func
   Function('return this')();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(114)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(113)))
 
 /***/ }),
 /* 5 */
@@ -220,7 +220,7 @@ module.exports = function (it, key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(3);
-var IE8_DOM_DEFINE = __webpack_require__(89);
+var IE8_DOM_DEFINE = __webpack_require__(88);
 var anObject = __webpack_require__(8);
 var toPrimitive = __webpack_require__(45);
 
@@ -335,7 +335,7 @@ var global = __webpack_require__(4);
 var createNonEnumerableProperty = __webpack_require__(11);
 var has = __webpack_require__(5);
 var setGlobal = __webpack_require__(65);
-var inspectSource = __webpack_require__(91);
+var inspectSource = __webpack_require__(90);
 var InternalStateModule = __webpack_require__(41);
 
 var getInternalState = InternalStateModule.get;
@@ -544,7 +544,7 @@ if (!TO_STRING_TAG_SUPPORT) {
 
 "use strict";
 
-var charAt = __webpack_require__(105).charAt;
+var charAt = __webpack_require__(104).charAt;
 var InternalStateModule = __webpack_require__(41);
 var defineIterator = __webpack_require__(59);
 
@@ -588,7 +588,7 @@ var global = __webpack_require__(4);
 var has = __webpack_require__(5);
 var isObject = __webpack_require__(7);
 var defineProperty = __webpack_require__(6).f;
-var copyConstructorProperties = __webpack_require__(83);
+var copyConstructorProperties = __webpack_require__(82);
 
 var NativeSymbol = global.Symbol;
 
@@ -635,7 +635,7 @@ if (DESCRIPTORS && typeof NativeSymbol == 'function' && (!('description' in Nati
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var defineWellKnownSymbol = __webpack_require__(84);
+var defineWellKnownSymbol = __webpack_require__(83);
 
 // `Symbol.iterator` well-known symbol
 // https://tc39.github.io/ecma262/#sec-symbol.iterator
@@ -654,7 +654,7 @@ var getBuiltIn = __webpack_require__(39);
 var IS_PURE = __webpack_require__(49);
 var DESCRIPTORS = __webpack_require__(3);
 var NATIVE_SYMBOL = __webpack_require__(63);
-var USE_SYMBOL_AS_UID = __webpack_require__(106);
+var USE_SYMBOL_AS_UID = __webpack_require__(105);
 var fails = __webpack_require__(1);
 var has = __webpack_require__(5);
 var isArray = __webpack_require__(33);
@@ -668,7 +668,7 @@ var nativeObjectCreate = __webpack_require__(43);
 var objectKeys = __webpack_require__(51);
 var getOwnPropertyNamesModule = __webpack_require__(50);
 var getOwnPropertyNamesExternal = __webpack_require__(137);
-var getOwnPropertySymbolsModule = __webpack_require__(97);
+var getOwnPropertySymbolsModule = __webpack_require__(96);
 var getOwnPropertyDescriptorModule = __webpack_require__(34);
 var definePropertyModule = __webpack_require__(6);
 var propertyIsEnumerableModule = __webpack_require__(64);
@@ -679,8 +679,8 @@ var sharedKey = __webpack_require__(54);
 var hiddenKeys = __webpack_require__(40);
 var uid = __webpack_require__(55);
 var wellKnownSymbol = __webpack_require__(2);
-var wrappedWellKnownSymbolModule = __webpack_require__(107);
-var defineWellKnownSymbol = __webpack_require__(84);
+var wrappedWellKnownSymbolModule = __webpack_require__(106);
+var defineWellKnownSymbol = __webpack_require__(83);
 var setToStringTag = __webpack_require__(53);
 var InternalStateModule = __webpack_require__(41);
 var $forEach = __webpack_require__(24).forEach;
@@ -965,7 +965,7 @@ hiddenKeys[HIDDEN] = true;
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
-var DOMIterables = __webpack_require__(86);
+var DOMIterables = __webpack_require__(85);
 var ArrayIteratorMethods = __webpack_require__(15);
 var createNonEnumerableProperty = __webpack_require__(11);
 var wellKnownSymbol = __webpack_require__(2);
@@ -1076,7 +1076,7 @@ module.exports = {
 
 var $ = __webpack_require__(0);
 var from = __webpack_require__(125);
-var checkCorrectnessOfIteration = __webpack_require__(79);
+var checkCorrectnessOfIteration = __webpack_require__(78);
 
 var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
   Array.from(iterable);
@@ -1164,7 +1164,7 @@ $({ target: 'Object', stat: true, forced: !DESCRIPTORS, sham: !DESCRIPTORS }, {
 var redefine = __webpack_require__(12);
 var anObject = __webpack_require__(8);
 var fails = __webpack_require__(1);
-var flags = __webpack_require__(103);
+var flags = __webpack_require__(102);
 
 var TO_STRING = 'toString';
 var RegExpPrototype = RegExp.prototype;
@@ -1445,7 +1445,7 @@ var createPropertyDescriptor = __webpack_require__(37);
 var toIndexedObject = __webpack_require__(13);
 var toPrimitive = __webpack_require__(45);
 var has = __webpack_require__(5);
-var IE8_DOM_DEFINE = __webpack_require__(89);
+var IE8_DOM_DEFINE = __webpack_require__(88);
 
 var nativeGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
@@ -1537,7 +1537,7 @@ module.exports = function (fn, that, length) {
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var path = __webpack_require__(102);
+var path = __webpack_require__(101);
 var global = __webpack_require__(4);
 
 var aFunction = function (variable) {
@@ -1636,11 +1636,11 @@ module.exports = {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(8);
-var defineProperties = __webpack_require__(96);
+var defineProperties = __webpack_require__(95);
 var enumBugKeys = __webpack_require__(60);
 var hiddenKeys = __webpack_require__(40);
 var html = __webpack_require__(133);
-var documentCreateElement = __webpack_require__(85);
+var documentCreateElement = __webpack_require__(84);
 var sharedKey = __webpack_require__(54);
 
 var GT = '>';
@@ -1888,8 +1888,10 @@ var Polyomino = /*#__PURE__*/function () {
   _createClass(Polyomino, [{
     key: "fill",
     value: function fill(component, boundingRect) {
-      //fill nodes to polyomino cells
+      var stepX1 = Math.floor(boundingRect.x1 / this.gridStep),
+          stepY1 = Math.floor(boundingRect.y1 / this.gridStep); //fill nodes to polyomino cells
       // for-of is faster than forEach https://jsperf.com/for-of-vs-foreach/10
+
       var _iterator = _createForOfIteratorHelper(component.nodes),
           _step;
 
@@ -1903,8 +1905,6 @@ var Polyomino = /*#__PURE__*/function () {
                //bottom right cell of a node
           var bottomRightX = Math.floor((node.x + node.width - boundingRect.x1) / this.gridStep);
           var bottomRightY = Math.floor((node.y + node.height - boundingRect.y1) / this.gridStep); */
-          var stepX1 = Math.floor(boundingRect.x1 / this.gridStep),
-              stepY1 = Math.floor(boundingRect.y1 / this.gridStep);
           var topLeftX = Math.floor(node.x / this.gridStep) - stepX1,
               topLeftY = Math.floor(node.y / this.gridStep) - stepY1,
               bottomRightX = Math.floor((node.x + node.width - 1) / this.gridStep) - stepX1,
@@ -1931,13 +1931,12 @@ var Polyomino = /*#__PURE__*/function () {
           var edge = _step2.value;
           var p0 = new __WEBPACK_IMPORTED_MODULE_16__common__["a" /* Point */]((edge.startX - boundingRect.x1) / this.gridStep, (edge.startY - boundingRect.y1) / this.gridStep),
               p1 = new __WEBPACK_IMPORTED_MODULE_16__common__["a" /* Point */]((edge.endX - boundingRect.x1) / this.gridStep, (edge.endY - boundingRect.y1) / this.gridStep); //for every edge calculate the super cover 
-          // TODO: we may use the supercover from the physics simulation
           // This seems to work better
 
           var points = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_15__general_utils__["c" /* betterLineSupercover */])({
             min: p0,
             max: p1
-          });
+          }); // var points = LineSuperCover(p0, p1);
 
           var _iterator3 = _createForOfIteratorHelper(points),
               _step3;
@@ -1949,7 +1948,7 @@ var Polyomino = /*#__PURE__*/function () {
               var indexY = Math.floor(point.y);
 
               if (indexX >= 0 && indexX < this.stepWidth && indexY >= 0 && indexY < this.stepHeight) {
-                this.grid[Math.floor(point.x)][Math.floor(point.y)] = true;
+                this.grid[indexX][indexY] = true;
               }
             }
           } catch (err) {
@@ -2110,7 +2109,7 @@ var Polyomino = /*#__PURE__*/function () {
 
 var fails = __webpack_require__(1);
 var wellKnownSymbol = __webpack_require__(2);
-var V8_VERSION = __webpack_require__(87);
+var V8_VERSION = __webpack_require__(86);
 
 var SPECIES = wellKnownSymbol('species');
 
@@ -2157,7 +2156,7 @@ module.exports = false;
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var internalObjectKeys = __webpack_require__(99);
+var internalObjectKeys = __webpack_require__(98);
 var enumBugKeys = __webpack_require__(60);
 
 var hiddenKeys = enumBugKeys.concat('length', 'prototype');
@@ -2173,7 +2172,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var internalObjectKeys = __webpack_require__(99);
+var internalObjectKeys = __webpack_require__(98);
 var enumBugKeys = __webpack_require__(60);
 
 // `Object.keys` method
@@ -2189,7 +2188,7 @@ module.exports = Object.keys || function keys(O) {
 
 "use strict";
 
-var regexpFlags = __webpack_require__(103);
+var regexpFlags = __webpack_require__(102);
 var stickyHelpers = __webpack_require__(142);
 
 var nativeExec = RegExp.prototype.exec;
@@ -2332,7 +2331,7 @@ var isForced = __webpack_require__(62);
 var redefine = __webpack_require__(12);
 var has = __webpack_require__(5);
 var classof = __webpack_require__(32);
-var inheritIfRequired = __webpack_require__(90);
+var inheritIfRequired = __webpack_require__(89);
 var toPrimitive = __webpack_require__(45);
 var fails = __webpack_require__(1);
 var create = __webpack_require__(43);
@@ -2477,15 +2476,15 @@ module.exports = function (originalArray, length) {
 
 var $ = __webpack_require__(0);
 var createIteratorConstructor = __webpack_require__(128);
-var getPrototypeOf = __webpack_require__(98);
-var setPrototypeOf = __webpack_require__(100);
+var getPrototypeOf = __webpack_require__(97);
+var setPrototypeOf = __webpack_require__(99);
 var setToStringTag = __webpack_require__(53);
 var createNonEnumerableProperty = __webpack_require__(11);
 var redefine = __webpack_require__(12);
 var wellKnownSymbol = __webpack_require__(2);
 var IS_PURE = __webpack_require__(49);
 var Iterators = __webpack_require__(42);
-var IteratorsCore = __webpack_require__(95);
+var IteratorsCore = __webpack_require__(94);
 
 var IteratorPrototype = IteratorsCore.IteratorPrototype;
 var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
@@ -2682,7 +2681,7 @@ module.exports = function (key, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var IS_PURE = __webpack_require__(49);
-var store = __webpack_require__(104);
+var store = __webpack_require__(103);
 
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
@@ -3299,7 +3298,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(114)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(113)))
 
 /***/ }),
 /* 73 */
@@ -3341,7 +3340,7 @@ var objectKeys = Object.keys || function (obj) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_math_sign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_math_sign__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_number_constructor__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_number_constructor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_number_constructor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_keys__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_keys__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_keys__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_object_to_string__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_object_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_object_to_string__);
@@ -3600,7 +3599,7 @@ function betterLineSupercover(line) {
 
       if (_error > ddy) {
         p.x += xStep;
-        _error -= ddx;
+        _error -= ddy;
 
         if (_error + _errorprev < ddy) {
           points.push({
@@ -3680,10 +3679,9 @@ function betterLineSupercover(line) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_core_js_modules_web_dom_collections_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_core_js_modules_web_dom_collections_iterator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__polyomino__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__quad_tree_quad_tree__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_assert__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_assert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_assert__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__collision_strategy__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_assert__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_assert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_assert__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__collision_strategy__ = __webpack_require__(118);
 
 
 
@@ -3713,7 +3711,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 
 
 
@@ -3757,7 +3754,7 @@ var CompactionGrid = /*#__PURE__*/function () {
     this.compactingBounds = new __WEBPACK_IMPORTED_MODULE_17__common__["b" /* Rectangle */](boundingRectangle.x1, boundingRectangle.y1, boundingRectangle.x2, boundingRectangle.y2);
     /** @type { import("./collision-strategy").ICollisionStrategy } */
 
-    this.collisionStrategy = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_21__collision_strategy__["a" /* getCollisionStrategy */])(__WEBPACK_IMPORTED_MODULE_21__collision_strategy__["b" /* CollisionStrategyType */].QUAD_TREE, this.polyominos, this.absoluteBounds);
+    this.collisionStrategy = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_20__collision_strategy__["a" /* getCollisionStrategy */])(__WEBPACK_IMPORTED_MODULE_20__collision_strategy__["b" /* CollisionStrategyType */].QUAD_TREE, this.polyominos, this.absoluteBounds);
   }
   /**
    * Tries to compact the grid from the `direction`
@@ -3842,39 +3839,30 @@ var CompactionGrid = /*#__PURE__*/function () {
       var allMovedPolys = new Set();
       var colliding = this.collisionStrategy.findCollisions(boundRect);
 
-      var _iterator = _createForOfIteratorHelper(colliding),
-          _step;
+      for (var i = 0; i < colliding.length; ++i) {
+        var poly = colliding[i];
+        var movedPolys = this.tryMove(poly, direction);
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var poly = _step.value;
-          var movedPolys = this.tryMove(poly, direction);
+        if (movedPolys !== undefined) {
+          var _iterator = _createForOfIteratorHelper(movedPolys),
+              _step;
 
-          if (movedPolys !== undefined) {
-            var _iterator3 = _createForOfIteratorHelper(movedPolys),
-                _step3;
-
-            try {
-              for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                var p = _step3.value;
-                allMovedPolys.add(p);
-              }
-            } catch (err) {
-              _iterator3.e(err);
-            } finally {
-              _iterator3.f();
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var p = _step.value;
+              allMovedPolys.add(p);
             }
-          } else {
-            // If we can't move then we can't compact
-            return false;
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
           }
-        } // Apply movement
+        } else {
+          // If we can't move then we can't compact
+          return false;
+        }
+      } // Apply movement
 
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
 
       var _iterator2 = _createForOfIteratorHelper(allMovedPolys),
           _step2;
@@ -3882,7 +3870,7 @@ var CompactionGrid = /*#__PURE__*/function () {
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
           var movedPoly = _step2.value;
-          this.collisionStrategy.move(movedPoly, positionChange); // this.quadTree.move(movedPoly, positionChange);
+          this.collisionStrategy.move(movedPoly, positionChange);
         }
       } catch (err) {
         _iterator2.e(err);
@@ -3892,32 +3880,6 @@ var CompactionGrid = /*#__PURE__*/function () {
 
       boundChangeFn(this.compactingBounds);
       return true;
-    }
-    /**
-     * Returns the polyomino and its index if there is a polyomino here. Undefined otherwise
-     * This functions assumes there is always only one polyomino at some point. 
-     * @param { number } i y-axis
-     * @param { number } j x-axis
-     */
-
-  }, {
-    key: "polyominoAt",
-    value: function polyominoAt(i, j) {
-      /* return this.compactingBounds.contains(i, j) ?
-          this.quadTree.findCollisionsPoint({ x: j, y: i })
-              .find(p => p.grid[j - p.location.x][i - p.location.y])
-          : undefined; */
-
-      /* return this.compactingBounds.contains(i, j) ?
-          // TODO: move this to polyomino.contains
-          this.polyominos.find(p => 
-              j >= p.location.x &&
-              j <= p.location.x + p.stepWidth - 1 &&
-              i >= p.location.y &&
-              i <= p.location.y + p.stepHeight - 1 &&
-              p.grid[j - p.location.x][i - p.location.y]
-          ) : 
-          undefined; */
     }
     /**
      * Checks if `polyomino` can move in the direction. Returns all the polyominos necessary to move otherwise undefined
@@ -3963,23 +3925,23 @@ var CompactionGrid = /*#__PURE__*/function () {
                   var next = this.collisionStrategy.polyominoAt(gridY, gridX + 1);
 
                   if (next !== undefined) {
-                    __WEBPACK_IMPORTED_MODULE_20_assert___default()(next !== polyomino, 'Call to itself');
+                    __WEBPACK_IMPORTED_MODULE_19_assert___default()(next !== polyomino, 'Call to itself');
                     var nextTryMove = this.tryMove(next, direction);
 
                     if (nextTryMove !== undefined) {
                       // We need to move all these in order to move the original
-                      var _iterator4 = _createForOfIteratorHelper(nextTryMove),
-                          _step4;
+                      var _iterator3 = _createForOfIteratorHelper(nextTryMove),
+                          _step3;
 
                       try {
-                        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-                          var adjacent = _step4.value;
+                        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                          var adjacent = _step3.value;
                           movedPolys.add(adjacent);
                         }
                       } catch (err) {
-                        _iterator4.e(err);
+                        _iterator3.e(err);
                       } finally {
-                        _iterator4.f();
+                        _iterator3.f();
                       }
                     } else {
                       this.cache.set(polyomino, undefined);
@@ -4040,19 +4002,19 @@ var CompactionGrid = /*#__PURE__*/function () {
 
                     if (_nextTryMove !== undefined) {
                       // We need to move all these in order to move the original
-                      var _iterator5 = _createForOfIteratorHelper(_nextTryMove),
-                          _step5;
+                      var _iterator4 = _createForOfIteratorHelper(_nextTryMove),
+                          _step4;
 
                       try {
-                        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-                          var _adjacent = _step5.value;
+                        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                          var _adjacent = _step4.value;
 
                           _movedPolys.add(_adjacent);
                         }
                       } catch (err) {
-                        _iterator5.e(err);
+                        _iterator4.e(err);
                       } finally {
-                        _iterator5.f();
+                        _iterator4.f();
                       }
                     } else {
                       this.cache.set(polyomino, undefined);
@@ -4113,19 +4075,19 @@ var CompactionGrid = /*#__PURE__*/function () {
 
                     if (_nextTryMove2 !== undefined) {
                       // We need to move all these in order to move the original
-                      var _iterator6 = _createForOfIteratorHelper(_nextTryMove2),
-                          _step6;
+                      var _iterator5 = _createForOfIteratorHelper(_nextTryMove2),
+                          _step5;
 
                       try {
-                        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-                          var _adjacent2 = _step6.value;
+                        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+                          var _adjacent2 = _step5.value;
 
                           _movedPolys2.add(_adjacent2);
                         }
                       } catch (err) {
-                        _iterator6.e(err);
+                        _iterator5.e(err);
                       } finally {
-                        _iterator6.f();
+                        _iterator5.f();
                       }
                     } else {
                       this.cache.set(polyomino, undefined);
@@ -4187,19 +4149,19 @@ var CompactionGrid = /*#__PURE__*/function () {
 
                     if (_nextTryMove3 !== undefined) {
                       // We need to move all these in order to move the original
-                      var _iterator7 = _createForOfIteratorHelper(_nextTryMove3),
-                          _step7;
+                      var _iterator6 = _createForOfIteratorHelper(_nextTryMove3),
+                          _step6;
 
                       try {
-                        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-                          var _adjacent3 = _step7.value;
+                        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+                          var _adjacent3 = _step6.value;
 
                           _movedPolys3.add(_adjacent3);
                         }
                       } catch (err) {
-                        _iterator7.e(err);
+                        _iterator6.e(err);
                       } finally {
-                        _iterator7.f();
+                        _iterator6.f();
                       }
                     } else {
                       this.cache.set(polyomino, undefined);
@@ -4253,18 +4215,8 @@ var CompactionGrid = /*#__PURE__*/function () {
       // bounding rectangle by their current positions
       var boundingRectangle = new __WEBPACK_IMPORTED_MODULE_17__common__["b" /* Rectangle */](Number.MAX_VALUE, Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE);
 
-      var _iterator8 = _createForOfIteratorHelper(polyominos),
-          _step8;
-
-      try {
-        for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-          var polyomino = _step8.value;
-          boundingRectangle.include(polyomino.stepBoundingRectangle);
-        }
-      } catch (err) {
-        _iterator8.e(err);
-      } finally {
-        _iterator8.f();
+      for (var i = 0; i < polyominos.length; ++i) {
+        boundingRectangle.include(polyominos[i].stepBoundingRectangle);
       }
 
       return boundingRectangle;
@@ -4276,595 +4228,6 @@ var CompactionGrid = /*#__PURE__*/function () {
 
 /***/ }),
 /* 75 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export Quadrant */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuadTree; });
-/* unused harmony export Node */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_symbol__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_symbol__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_find_index__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_find_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_find_index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_modules_es_array_is_array__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_modules_es_array_is_array___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_core_js_modules_es_array_is_array__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_array_iterator__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_array_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_array_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_modules_es_array_map__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_modules_es_array_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_core_js_modules_es_array_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_modules_es_array_reduce__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_modules_es_array_reduce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_core_js_modules_es_array_reduce__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_modules_es_array_slice__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_modules_es_array_slice___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_core_js_modules_es_array_slice__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_modules_es_date_to_string__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_modules_es_date_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_core_js_modules_es_date_to_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_function_name__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_function_name___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_function_name__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_object_define_property__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_object_define_property___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_object_define_property__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_object_to_string__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_object_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_object_to_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_values__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_values___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_values__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_regexp_exec__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_regexp_exec___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_regexp_exec__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_regexp_to_string__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_regexp_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_regexp_to_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_string_iterator__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_string_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_string_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_string_split__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_string_split___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_string_split__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_core_js_modules_web_dom_collections_iterator__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_core_js_modules_web_dom_collections_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_core_js_modules_web_dom_collections_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__models_common__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_assert__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_assert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_assert__);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-/**
- * Heavily inspired from https://pvigier.github.io/2019/08/04/quadtree-collision-detection.html 
- * 
- * @typedef {{
- * intoRectangle(): Rectangle;
- * move(change: import('../typedef').IPoint): void;
- * }} IntoRectangle
- */
-
-/**
- * @enum { number }
- */
-
-var Quadrant = {
-  NW: 0,
-  NE: 1,
-  SW: 2,
-  SE: 3
-};
-/** Maximum number of values a node can hold before split */
-
-var THRESHOLD = 16;
-/** Maximum quad tree depth */
-
-var MAX_DEPTH = 8;
-/**
- * 
- * @template {IntoRectangle} T
- */
-
-var QuadTree = /*#__PURE__*/function () {
-  /**
-   * @param { Rectangle } area 
-   */
-  function QuadTree(area) {
-    _classCallCheck(this, QuadTree);
-
-    /** @type { Node<T> } */
-    this.mRoot = new Node(area);
-  }
-  /**
-   * @param { T } value
-   * @returns { void } 
-   */
-
-
-  _createClass(QuadTree, [{
-    key: "add",
-    value: function add(value) {
-      // assert(this.mRoot.mRectangle.includes(value.intoRectangle()), `Area: ${JSON.stringify(this.mRoot.mRectangle)}, Value: ${JSON.stringify(value.intoRectangle())}`);
-      this.mRoot.add(value, 0);
-    }
-    /**
-     * @param { T } value
-     */
-
-  }, {
-    key: "remove",
-    value: function remove(value) {
-      this.mRoot.remove(value);
-    }
-    /**
-     * @param { Rectangle } rectangle
-     */
-
-  }, {
-    key: "findCollisions",
-    value: function findCollisions(rectangle) {
-      /** @type { T[] } */
-      var collisions = [];
-      this.mRoot.findCollisions(rectangle, collisions);
-      return collisions;
-    }
-    /**
-     * @param { import('../typedef').IPoint } point 
-     */
-
-  }, {
-    key: "findCollisionsPoint",
-    value: function findCollisionsPoint(point) {
-      /** @type { T[] } */
-      var collisions = [];
-      this.mRoot.findCollisions(new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](point.x, point.y, point.x, point.y), collisions);
-      return collisions;
-    }
-    /**
-     * Moves the value if it is already in the area
-     * @param { T } value
-     * @param { import('../typedef').IPoint } change 
-     * @returns { boolean } true if moved
-     */
-
-  }, {
-    key: "move",
-    value: function move(value, change) {
-      // return this.mRoot.move(0, value, null, change);
-      this.mRoot.remove(value);
-      value.move(change);
-      this.mRoot.add(value, 0);
-      return true;
-    }
-  }, {
-    key: "depth",
-    get: function get() {
-      return this.mRoot.depth;
-    }
-  }, {
-    key: "root",
-    get: function get() {
-      return this.mRoot;
-    }
-  }]);
-
-  return QuadTree;
-}();
-/**
- * 
- * @template {IntoRectangle} T
- */
-
-var Node = /*#__PURE__*/function () {
-  /**
-   * 
-   * @param { Rectangle } rectangle 
-   */
-  function Node(rectangle) {
-    _classCallCheck(this, Node);
-
-    this.mRectangle = rectangle;
-    /** @type { Node<T>[] } */
-
-    this.mChildren = [];
-    /** @type { T[] } */
-
-    this.mValues = [];
-  }
-  /**
-   * @param { T } value
-   * @param { number } depth
-   * @returns { void }
-   */
-
-
-  _createClass(Node, [{
-    key: "add",
-    value: function add(value, depth) {
-      // console.log(`Adding value ${JSON.stringify(value.intoRectangle())} into ${JSON.stringify(this.mRectangle)}`);
-      var boundingRectangle = value.intoRectangle(); // assert(this.mRectangle.includes(boundingRectangle), `Doesn't contain: this: ${JSON.stringify(this.mRectangle)}, value: ${JSON.stringify(boundingRectangle)}`);
-
-      if (this.isLeaf) {
-        if (depth >= MAX_DEPTH || this.mValues.length < THRESHOLD) {
-          this.mValues.push(value);
-        } else {
-          this.split();
-          this.add(value, depth);
-        }
-      } else {
-        var quad = this.getQuadrant(boundingRectangle);
-
-        if (quad !== null) {
-          this.getChild(quad).add(value, depth + 1);
-        } else {
-          this.mValues.push(value);
-        }
-      }
-    }
-    /**
-     * @param { T } value
-     * @param { Node<T>? } parent 
-     * @returns { void } 
-     */
-
-  }, {
-    key: "remove",
-    value: function remove(value) {
-      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var boundingRectangle = value.intoRectangle(); // assert(this.mRectangle.includes(boundingRectangle), `Doesn't contain: this: ${JSON.stringify(this.mRectangle)}, value: ${JSON.stringify(boundingRectangle)}`);
-
-      if (this.isLeaf) {
-        this.removeValue(value);
-
-        if (parent !== null) {
-          parent.tryMerge();
-        }
-      } else {
-        var quad = this.getQuadrant(boundingRectangle);
-
-        if (quad !== null) {
-          this.mChildren[quad].remove(value, this);
-        } else {
-          this.removeValue(value);
-        }
-      }
-    }
-    /**
-     * @param { T } value
-     * @returns { void } 
-     */
-
-  }, {
-    key: "removeValue",
-    value: function removeValue(value) {
-      var index = this.mValues.findIndex(function (v) {
-        return v === value;
-      });
-      __WEBPACK_IMPORTED_MODULE_22_assert___default()(index !== -1, "Value ".concat(value, " is not present in this node")); // Swap
-
-      {
-        var lastIndex = this.mValues.length - 1;
-        var temp = this.mValues[index];
-        this.mValues[index] = this.mValues[lastIndex];
-        this.mValues[lastIndex] = temp;
-      }
-      this.mValues.pop();
-    }
-    /**
-     * @returns { boolean }
-     */
-
-  }, {
-    key: "tryMerge",
-    value: function tryMerge() {
-      var totalValues = this.mValues.length;
-
-      var _iterator = _createForOfIteratorHelper(this.mChildren),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _child = _step.value;
-
-          if (!_child.isLeaf) {
-            return false;
-          } else {
-            totalValues += _child.mValues.length;
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      if (totalValues <= THRESHOLD) {
-        var _iterator2 = _createForOfIteratorHelper(this.mChildren),
-            _step2;
-
-        try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var child = _step2.value;
-
-            var _iterator3 = _createForOfIteratorHelper(child.mValues),
-                _step3;
-
-            try {
-              for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                var value = _step3.value;
-                this.mValues.push(value);
-              } // Clear the values
-
-            } catch (err) {
-              _iterator3.e(err);
-            } finally {
-              _iterator3.f();
-            }
-
-            child.mValues = [];
-          } // No children
-
-        } catch (err) {
-          _iterator2.e(err);
-        } finally {
-          _iterator2.f();
-        }
-
-        this.mChildren = [];
-      }
-
-      return true;
-    }
-    /**
-     * Adds the all colliding rectangles into `collisions` array
-     * @param { Rectangle } rectangle
-     * @param { T[] } collisions
-     */
-
-  }, {
-    key: "findCollisions",
-    value: function findCollisions(rectangle, collisions) {
-      var _iterator4 = _createForOfIteratorHelper(this.mValues),
-          _step4;
-
-      try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var value = _step4.value;
-
-          if (rectangle.intersects(value.intoRectangle())) {
-            // yield value;
-            collisions.push(value);
-          }
-        }
-      } catch (err) {
-        _iterator4.e(err);
-      } finally {
-        _iterator4.f();
-      }
-
-      if (!this.isLeaf) {
-        var _iterator5 = _createForOfIteratorHelper(this.mChildren),
-            _step5;
-
-        try {
-          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-            var child = _step5.value;
-
-            if (child.mRectangle.intersects(rectangle)) {
-              child.findCollisions(rectangle, collisions);
-            }
-          }
-        } catch (err) {
-          _iterator5.e(err);
-        } finally {
-          _iterator5.f();
-        }
-      }
-    }
-  }, {
-    key: "getQuadrant",
-
-    /**
-     * @param { Rectangle } rectangle
-     * @returns { Quadrant | null } 
-     */
-    value: function getQuadrant(rectangle) {
-      var center = this.mRectangle.absoluteCenter; // console.log(`center: ${JSON.stringify(center)}`);
-
-      if (rectangle.x2 < center.x) {
-        if (rectangle.y2 < center.y) {
-          return Quadrant.NW;
-        } else if (rectangle.y1 >= center.y) {
-          return Quadrant.SW;
-        } else {
-          return null;
-        }
-      } else if (rectangle.x1 >= center.x) {
-        if (rectangle.y2 < center.y) {
-          return Quadrant.NE;
-        } else if (rectangle.y1 >= center.y) {
-          return Quadrant.SE;
-        } else {
-          return null;
-        }
-      } else {
-        return null;
-      }
-    }
-    /**
-     * @returns { void }
-     */
-
-  }, {
-    key: "split",
-    value: function split() {
-      for (var i = 0; i < Node.CHILDREN_COUNT; i += 1) {
-        this.mChildren.push(new Node(this.getSubArea(i)));
-      }
-
-      var newValues = [];
-
-      var _iterator6 = _createForOfIteratorHelper(this.mValues),
-          _step6;
-
-      try {
-        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-          var value = _step6.value;
-          var quad = this.getQuadrant(value.intoRectangle());
-
-          if (quad !== null) {
-            this.mChildren[quad].mValues.push(value);
-          } else {
-            newValues.push(value);
-          }
-        }
-      } catch (err) {
-        _iterator6.e(err);
-      } finally {
-        _iterator6.f();
-      }
-
-      this.mValues = newValues;
-    }
-    /**
-     * @param { Quadrant } quadrant
-     * @returns { Node<T> } 
-     */
-
-  }, {
-    key: "getChild",
-    value: function getChild(quadrant) {
-      if (quadrant in Object.values(Quadrant)) {
-        return this.mChildren[quadrant];
-      } else {
-        throw new Error("Invalid quadrant: ".concat(quadrant));
-      }
-    }
-    /**
-     * Returns a rectangle with 1 / 4 of the current node
-     * @param { Quadrant } quadrant the position of the subarea
-     * @returns { Rectangle } 
-     */
-
-  }, {
-    key: "getSubArea",
-    value: function getSubArea(quadrant) {
-      var center = this.mRectangle.absoluteCenter;
-
-      switch (quadrant) {
-        case Quadrant.NW:
-          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](this.mRectangle.x1, this.mRectangle.y1, center.x, center.y);
-
-        case Quadrant.NE:
-          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](center.x, this.mRectangle.y1, this.mRectangle.x2, center.y);
-
-        case Quadrant.SW:
-          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](this.mRectangle.x1, center.y, center.x, this.mRectangle.y2);
-
-        case Quadrant.SE:
-          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](center.x, center.y, this.mRectangle.x2, this.mRectangle.y2);
-
-        default:
-          throw new Error("Invalid subarea value: ".concat(quadrant));
-      }
-    }
-    /**
-     * Use only for debugging
-     * @param { number } depth
-     */
-
-  }, {
-    key: "print",
-    value: function print(depth) {
-      console.log("Node ".concat(JSON.stringify(this.mRectangle), " (Depth ").concat(depth, ")"));
-      console.log("Root values: ".concat(this.mValues));
-
-      var _iterator7 = _createForOfIteratorHelper(this.mChildren.entries()),
-          _step7;
-
-      try {
-        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-          var _step7$value = _slicedToArray(_step7.value, 2),
-              i = _step7$value[0],
-              child = _step7$value[1];
-
-          console.log("Child ".concat(i));
-          child.print(depth + 1);
-        }
-      } catch (err) {
-        _iterator7.e(err);
-      } finally {
-        _iterator7.f();
-      }
-
-      console.log("End Node ".concat(JSON.stringify(this.mRectangle), "===================="));
-    }
-  }, {
-    key: "isLeaf",
-    get: function get() {
-      return this.mChildren.length === 0;
-    }
-    /**
-     * @returns { number }
-     */
-
-  }, {
-    key: "depth",
-    get: function get() {
-      if (this.isLeaf) {
-        return 1;
-      } else {
-        return this.mChildren.map(function (c) {
-          return c.depth;
-        }).reduce(function (maxDepth, depth) {
-          return Math.max(maxDepth, depth);
-        }, 0) + 1;
-      }
-    }
-  }]);
-
-  return Node;
-}();
-Node.CHILDREN_COUNT = Object.values(Quadrant).length;
-
-/***/ }),
-/* 76 */
 /***/ (function(module, exports) {
 
 module.exports = function (it, Constructor, name) {
@@ -4875,7 +4238,7 @@ module.exports = function (it, Constructor, name) {
 
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4895,7 +4258,7 @@ module.exports = (!STRICT_METHOD || !USES_TO_LENGTH) ? function forEach(callback
 
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(8);
@@ -4914,7 +4277,7 @@ module.exports = function (iterator, fn, value, ENTRIES) {
 
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wellKnownSymbol = __webpack_require__(2);
@@ -4958,7 +4321,7 @@ module.exports = function (exec, SKIP_CLOSING) {
 
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(69);
@@ -4990,7 +4353,7 @@ module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
 
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4999,12 +4362,12 @@ var defineProperty = __webpack_require__(6).f;
 var create = __webpack_require__(43);
 var redefineAll = __webpack_require__(140);
 var bind = __webpack_require__(38);
-var anInstance = __webpack_require__(76);
-var iterate = __webpack_require__(94);
+var anInstance = __webpack_require__(75);
+var iterate = __webpack_require__(93);
 var defineIterator = __webpack_require__(59);
 var setSpecies = __webpack_require__(143);
 var DESCRIPTORS = __webpack_require__(3);
-var fastKey = __webpack_require__(92).fastKey;
+var fastKey = __webpack_require__(91).fastKey;
 var InternalStateModule = __webpack_require__(41);
 
 var setInternalState = InternalStateModule.set;
@@ -5183,7 +4546,7 @@ module.exports = {
 
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5192,14 +4555,14 @@ var $ = __webpack_require__(0);
 var global = __webpack_require__(4);
 var isForced = __webpack_require__(62);
 var redefine = __webpack_require__(12);
-var InternalMetadataModule = __webpack_require__(92);
-var iterate = __webpack_require__(94);
-var anInstance = __webpack_require__(76);
+var InternalMetadataModule = __webpack_require__(91);
+var iterate = __webpack_require__(93);
+var anInstance = __webpack_require__(75);
 var isObject = __webpack_require__(7);
 var fails = __webpack_require__(1);
-var checkCorrectnessOfIteration = __webpack_require__(79);
+var checkCorrectnessOfIteration = __webpack_require__(78);
 var setToStringTag = __webpack_require__(53);
-var inheritIfRequired = __webpack_require__(90);
+var inheritIfRequired = __webpack_require__(89);
 
 module.exports = function (CONSTRUCTOR_NAME, wrapper, common) {
   var IS_MAP = CONSTRUCTOR_NAME.indexOf('Map') !== -1;
@@ -5289,11 +4652,11 @@ module.exports = function (CONSTRUCTOR_NAME, wrapper, common) {
 
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(5);
-var ownKeys = __webpack_require__(101);
+var ownKeys = __webpack_require__(100);
 var getOwnPropertyDescriptorModule = __webpack_require__(34);
 var definePropertyModule = __webpack_require__(6);
 
@@ -5309,12 +4672,12 @@ module.exports = function (target, source) {
 
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var path = __webpack_require__(102);
+var path = __webpack_require__(101);
 var has = __webpack_require__(5);
-var wrappedWellKnownSymbolModule = __webpack_require__(107);
+var wrappedWellKnownSymbolModule = __webpack_require__(106);
 var defineProperty = __webpack_require__(6).f;
 
 module.exports = function (NAME) {
@@ -5326,7 +4689,7 @@ module.exports = function (NAME) {
 
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
@@ -5342,7 +4705,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports) {
 
 // iterable DOM collections
@@ -5383,7 +4746,7 @@ module.exports = {
 
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
@@ -5409,10 +4772,10 @@ module.exports = version && +version;
 
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof = __webpack_require__(80);
+var classof = __webpack_require__(79);
 var Iterators = __webpack_require__(42);
 var wellKnownSymbol = __webpack_require__(2);
 
@@ -5426,12 +4789,12 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(3);
 var fails = __webpack_require__(1);
-var createElement = __webpack_require__(85);
+var createElement = __webpack_require__(84);
 
 // Thank's IE8 for his funny defineProperty
 module.exports = !DESCRIPTORS && !fails(function () {
@@ -5442,11 +4805,11 @@ module.exports = !DESCRIPTORS && !fails(function () {
 
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(7);
-var setPrototypeOf = __webpack_require__(100);
+var setPrototypeOf = __webpack_require__(99);
 
 // makes subclassing work correct for wrapped built-ins
 module.exports = function ($this, dummy, Wrapper) {
@@ -5465,10 +4828,10 @@ module.exports = function ($this, dummy, Wrapper) {
 
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(104);
+var store = __webpack_require__(103);
 
 var functionToString = Function.toString;
 
@@ -5483,7 +4846,7 @@ module.exports = store.inspectSource;
 
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var hiddenKeys = __webpack_require__(40);
@@ -5550,7 +4913,7 @@ hiddenKeys[METADATA] = true;
 
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wellKnownSymbol = __webpack_require__(2);
@@ -5566,15 +4929,15 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(8);
-var isArrayIteratorMethod = __webpack_require__(93);
+var isArrayIteratorMethod = __webpack_require__(92);
 var toLength = __webpack_require__(9);
 var bind = __webpack_require__(38);
-var getIteratorMethod = __webpack_require__(88);
-var callWithSafeIterationClosing = __webpack_require__(78);
+var getIteratorMethod = __webpack_require__(87);
+var callWithSafeIterationClosing = __webpack_require__(77);
 
 var Result = function (stopped, result) {
   this.stopped = stopped;
@@ -5615,12 +4978,12 @@ iterate.stop = function (result) {
 
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var getPrototypeOf = __webpack_require__(98);
+var getPrototypeOf = __webpack_require__(97);
 var createNonEnumerableProperty = __webpack_require__(11);
 var has = __webpack_require__(5);
 var wellKnownSymbol = __webpack_require__(2);
@@ -5659,7 +5022,7 @@ module.exports = {
 
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(3);
@@ -5681,14 +5044,14 @@ module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperti
 
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(5);
@@ -5711,7 +5074,7 @@ module.exports = CORRECT_PROTOTYPE_GETTER ? Object.getPrototypeOf : function (O)
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(5);
@@ -5734,7 +5097,7 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(8);
@@ -5764,12 +5127,12 @@ module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getBuiltIn = __webpack_require__(39);
 var getOwnPropertyNamesModule = __webpack_require__(50);
-var getOwnPropertySymbolsModule = __webpack_require__(97);
+var getOwnPropertySymbolsModule = __webpack_require__(96);
 var anObject = __webpack_require__(8);
 
 // all object keys, includes non-enumerable and symbols
@@ -5781,7 +5144,7 @@ module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
 
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
@@ -5790,7 +5153,7 @@ module.exports = global;
 
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5813,7 +5176,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
@@ -5826,7 +5189,7 @@ module.exports = store;
 
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(68);
@@ -5859,7 +5222,7 @@ module.exports = {
 
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var NATIVE_SYMBOL = __webpack_require__(63);
@@ -5872,7 +5235,7 @@ module.exports = NATIVE_SYMBOL
 
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wellKnownSymbol = __webpack_require__(2);
@@ -5881,7 +5244,7 @@ exports.f = wellKnownSymbol;
 
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5896,7 +5259,7 @@ var createProperty = __webpack_require__(48);
 var arraySpeciesCreate = __webpack_require__(58);
 var arrayMethodHasSpeciesSupport = __webpack_require__(47);
 var wellKnownSymbol = __webpack_require__(2);
-var V8_VERSION = __webpack_require__(87);
+var V8_VERSION = __webpack_require__(86);
 
 var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
 var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
@@ -5948,13 +5311,13 @@ $({ target: 'Array', proto: true, forced: FORCED }, {
 
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(0);
-var forEach = __webpack_require__(77);
+var forEach = __webpack_require__(76);
 
 // `Array.prototype.forEach` method
 // https://tc39.github.io/ecma262/#sec-array.prototype.foreach
@@ -5964,7 +5327,7 @@ $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
 
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $ = __webpack_require__(0);
@@ -5984,7 +5347,7 @@ $({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
 
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $ = __webpack_require__(0);
@@ -6000,7 +5363,7 @@ $({ target: 'Object', stat: true }, {
 
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6014,12 +5377,12 @@ $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
 
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
-var DOMIterables = __webpack_require__(86);
-var forEach = __webpack_require__(77);
+var DOMIterables = __webpack_require__(85);
+var forEach = __webpack_require__(76);
 var createNonEnumerableProperty = __webpack_require__(11);
 
 for (var COLLECTION_NAME in DOMIterables) {
@@ -6035,7 +5398,7 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports) {
 
 var g;
@@ -6062,12 +5425,12 @@ module.exports = g;
 
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_array_for_each__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_array_for_each__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_array_for_each___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_array_for_each__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_array_includes__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_array_includes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_array_includes__);
@@ -6075,9 +5438,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_array_index_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_array_index_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_number_constructor__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_number_constructor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_number_constructor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_web_dom_collections_for_each__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_web_dom_collections_for_each__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_web_dom_collections_for_each___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_modules_web_dom_collections_for_each__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__packing__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__packing__ = __webpack_require__(120);
 
 
 
@@ -6440,7 +5803,7 @@ var layoutUtilities = function layoutUtilities(cy, options) {
 /* harmony default export */ __webpack_exports__["default"] = (layoutUtilities);
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -6449,7 +5812,7 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -6479,7 +5842,7 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6517,7 +5880,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 (function () {
   'use strict';
 
-  var layoutUtilities = __webpack_require__(115)["default"]; // registers the extension on a cytoscape lib ref
+  var layoutUtilities = __webpack_require__(114)["default"]; // registers the extension on a cytoscape lib ref
 
   /**
    * @param {globalThis.cytoscape} cytoscape
@@ -6682,7 +6045,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     module.exports = register;
   }
 
-  if (typeof define !== 'undefined' && __webpack_require__(116)) {
+  if (typeof define !== 'undefined' && __webpack_require__(115)) {
     // expose as an amd/requirejs module
     define('cytoscape-view-utilities', function () {
       return register;
@@ -6694,10 +6057,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     register(cytoscape);
   }
 })();
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(117)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(116)(module)))
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6735,7 +6098,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_modules_web_dom_collections_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_modules_web_dom_collections_iterator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__polyomino__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__common__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__quad_tree_quad_tree__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__quad_tree_quad_tree__ = __webpack_require__(121);
 
 
 
@@ -6932,12 +6295,50 @@ var QuadTreeStrategy = /*#__PURE__*/function () {
   }, {
     key: "polyominoAt",
     value: function polyominoAt(y, x) {
-      return this.mBounds.contains(y, x) ? this.mQuadTree.findCollisionsPoint({
-        x: x,
-        y: y
-      }).find(function (p) {
-        return p.grid[x - p.location.x][y - p.location.y];
-      }) : undefined;
+      /* return this.mBounds.contains(y, x) ?
+          this.mQuadTree.findCollisionsPoint({ x, y })
+              .find(p => p.grid[x - p.location.x][y - p.location.y]) : 
+          undefined; */
+      return this.polyominoAtImpl(this.mQuadTree.mRoot, y, x);
+    }
+    /**
+     * This is actually a bad design because it should be in quad tree but this is a special case for polyominos so it can't be included in QuadTree class
+     * @param { Node<Polyomino> } node 
+     * @param { number } y 
+     * @param { number } x 
+     * @returns { Polyomino | undefined }
+     * TODO: create QuadTreePolyomino class
+     */
+
+  }, {
+    key: "polyominoAtImpl",
+    value: function polyominoAtImpl(node, y, x) {
+      var values = node.mValues;
+      var length = values.length;
+
+      for (var i = 0; i < length; ++i) {
+        var poly = values[i];
+
+        if (poly.intoRectangle().contains(y, x) && poly.grid[x - poly.location.x][y - poly.location.y]) {
+          return poly;
+        }
+      }
+
+      if (!node.isLeaf) {
+        for (var _i = 0; _i < node.mChildren.length; ++_i) {
+          var child = node.mChildren[_i]; // Some edge cases can fail so check if point can be multiple areas
+
+          if (child.mRectangle.contains(y, x)) {
+            var result = this.polyominoAtImpl(child, y, x);
+
+            if (result !== undefined) {
+              return result;
+            }
+          }
+        }
+      }
+
+      return undefined;
     }
     /**
      * @param { Rectangle } rectangle 
@@ -7005,7 +6406,7 @@ var CollisionGridStrategy = /*#__PURE__*/function () {
 }();
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7016,7 +6417,7 @@ var CollisionGridStrategy = /*#__PURE__*/function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_from__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_from__);
@@ -7398,7 +6799,7 @@ var Grid = /*#__PURE__*/function () {
 }();
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7413,7 +6814,7 @@ var Grid = /*#__PURE__*/function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_filter__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_for_each__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_for_each__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_for_each___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_for_each__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from__);
@@ -7443,24 +6844,24 @@ var Grid = /*#__PURE__*/function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_object_get_own_property_descriptor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_object_get_own_property_descriptor__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_object_get_own_property_descriptors__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_object_get_own_property_descriptors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_object_get_own_property_descriptors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_object_keys__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_object_keys__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_object_keys__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_core_js_modules_es_object_to_string__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_core_js_modules_es_object_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_core_js_modules_es_object_to_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_core_js_modules_es_object_values__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_core_js_modules_es_object_values__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_core_js_modules_es_object_values___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_core_js_modules_es_object_values__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_core_js_modules_es_regexp_to_string__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_core_js_modules_es_regexp_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_core_js_modules_es_regexp_to_string__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_core_js_modules_es_string_iterator__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_core_js_modules_es_string_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23_core_js_modules_es_string_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_core_js_modules_web_dom_collections_for_each__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_core_js_modules_web_dom_collections_for_each__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_core_js_modules_web_dom_collections_for_each___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_core_js_modules_web_dom_collections_for_each__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_core_js_modules_web_dom_collections_iterator__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_core_js_modules_web_dom_collections_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_core_js_modules_web_dom_collections_iterator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__general_utils__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__models_compaction_compaction_grid__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__models_polyomino__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__models_grid__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__models_grid__ = __webpack_require__(119);
 
 
 
@@ -7487,14 +6888,6 @@ var Grid = /*#__PURE__*/function () {
 
 
 
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -7502,7 +6895,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -7771,7 +7164,6 @@ function incrementalPackImpl(polyominos, gridStep) {
 
 function incrementalSinglePack(components, options) {
   var gridStep = calculateGridStep(components, options);
-  console.log("gridStep: ".concat(gridStep));
 
   if (options.componentSpacing > 0) {
     var spacingAmount = options.componentSpacing;
@@ -7797,22 +7189,10 @@ function incrementalSinglePack(components, options) {
         };
       });
 
-      var _iterator4 = _createForOfIteratorHelper(polyominos.entries()),
-          _step4;
-
-      try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var _step4$value = _slicedToArray(_step4.value, 2),
-              i = _step4$value[0],
-              poly = _step4$value[1];
-
-          poly.x1 += shifts[i].dx;
-          poly.y1 += shifts[i].dy;
-        }
-      } catch (err) {
-        _iterator4.e(err);
-      } finally {
-        _iterator4.f();
+      for (var i = 0; i < polyominos.length; ++i) {
+        var poly = polyominos[i];
+        poly.x1 += shifts[i].dx;
+        poly.y1 += shifts[i].dy;
       }
 
       return {
@@ -7832,34 +7212,14 @@ function incrementalSinglePack(components, options) {
  */
 
 function calculatePackingCenter(components, shifts) {
-  var _iterator5 = _createForOfIteratorHelper(components.entries()),
-      _step5;
+  for (var i = 0; i < components.length; ++i) {
+    var component = components[i];
 
-  try {
-    for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-      var _step5$value = _slicedToArray(_step5.value, 2),
-          index = _step5$value[0],
-          component = _step5$value[1];
-
-      var _iterator6 = _createForOfIteratorHelper(component.nodes),
-          _step6;
-
-      try {
-        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-          var node = _step6.value;
-          node.x += shifts[index].dx;
-          node.y += shifts[index].dy;
-        }
-      } catch (err) {
-        _iterator6.e(err);
-      } finally {
-        _iterator6.f();
-      }
+    for (var j = 0; j < component.nodes.length; ++j) {
+      var node = component.nodes[j];
+      node.x += shifts[i].dx;
+      node.y += shifts[i].dy;
     }
-  } catch (err) {
-    _iterator5.e(err);
-  } finally {
-    _iterator5.f();
   }
 
   return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_26__general_utils__["a" /* getCenter */])(components);
@@ -7874,21 +7234,12 @@ function calculateGridStep(components, options) {
   var gridStep = 0;
   var totalNodes = 0;
 
-  var _iterator7 = _createForOfIteratorHelper(components),
-      _step7;
-
-  try {
-    for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-      var component = _step7.value;
-      totalNodes += component.nodes.length;
-      gridStep += component.nodes.reduce(function (gridStep, node) {
-        return gridStep + node.width + node.height;
-      }, 0);
-    }
-  } catch (err) {
-    _iterator7.e(err);
-  } finally {
-    _iterator7.f();
+  for (var i = 0; i < components.length; ++i) {
+    var component = components[i];
+    totalNodes += component.nodes.length;
+    gridStep += component.nodes.reduce(function (gridStep, node) {
+      return gridStep + node.width + node.height;
+    }, 0);
   }
 
   gridStep = gridStep / (2 * totalNodes);
@@ -7902,34 +7253,16 @@ function calculateGridStep(components, options) {
 
 
 function addSpacing(components, spacingAmount) {
-  var _iterator8 = _createForOfIteratorHelper(components),
-      _step8;
+  for (var i = 0; i < components.length; ++i) {
+    var component = components[i];
 
-  try {
-    for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-      var component = _step8.value;
-
-      var _iterator9 = _createForOfIteratorHelper(component.nodes),
-          _step9;
-
-      try {
-        for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
-          var node = _step9.value;
-          node.x = node.x - spacingAmount;
-          node.y = node.y - spacingAmount;
-          node.width = node.width + 2 * spacingAmount;
-          node.height = node.height + 2 * spacingAmount;
-        }
-      } catch (err) {
-        _iterator9.e(err);
-      } finally {
-        _iterator9.f();
-      }
+    for (var j = 0; j < component.nodes.length; ++j) {
+      var node = component.nodes[j];
+      node.x = node.x - spacingAmount;
+      node.y = node.y - spacingAmount;
+      node.width = node.width + 2 * spacingAmount;
+      node.height = node.height + 2 * spacingAmount;
     }
-  } catch (err) {
-    _iterator8.e(err);
-  } finally {
-    _iterator8.f();
   }
 }
 /**
@@ -7945,30 +7278,18 @@ function createPolyominos(components, gridStep) {
   var gridWidth = 0,
       gridHeight = 0;
 
-  var _iterator10 = _createForOfIteratorHelper(components.entries()),
-      _step10;
-
-  try {
-    for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
-      var _step10$value = _slicedToArray(_step10.value, 2),
-          index = _step10$value[0],
-          component = _step10$value[1];
-
-      var boundingRect = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_26__general_utils__["b" /* getBoundingRectangle */])(component);
-      var componentWidth = boundingRect.width;
-      var componentHeight = boundingRect.height;
-      gridWidth += componentWidth;
-      gridHeight += componentHeight;
-      var componentPolyomino = new __WEBPACK_IMPORTED_MODULE_28__models_polyomino__["a" /* Polyomino */](boundingRect.x1, boundingRect.y1, componentWidth, componentHeight, gridStep, index, {
-        component: component,
-        boundingRect: boundingRect
-      });
-      polyominos.push(componentPolyomino);
-    }
-  } catch (err) {
-    _iterator10.e(err);
-  } finally {
-    _iterator10.f();
+  for (var i = 0; i < components.length; ++i) {
+    var component = components[i];
+    var boundingRect = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_26__general_utils__["b" /* getBoundingRectangle */])(component);
+    var componentWidth = boundingRect.width;
+    var componentHeight = boundingRect.height;
+    gridWidth += componentWidth;
+    gridHeight += componentHeight;
+    var componentPolyomino = new __WEBPACK_IMPORTED_MODULE_28__models_polyomino__["a" /* Polyomino */](boundingRect.x1, boundingRect.y1, componentWidth, componentHeight, gridStep, i, {
+      component: component,
+      boundingRect: boundingRect
+    });
+    polyominos.push(componentPolyomino);
   }
 
   return {
@@ -8005,6 +7326,545 @@ function calculateStatistics(mainGrid, desiredAspectRatio) {
 }
 
 /***/ }),
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export Quadrant */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuadTree; });
+/* unused harmony export Node */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_symbol__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_core_js_modules_es_symbol__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_modules_es_symbol_description__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_modules_es_symbol_iterator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_modules_es_array_concat__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_find_index__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_find_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_array_find_index__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_from__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_modules_es_array_is_array__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_modules_es_array_is_array___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_core_js_modules_es_array_is_array__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_array_iterator__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_array_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_array_iterator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_modules_es_array_map__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_modules_es_array_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_core_js_modules_es_array_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_modules_es_array_reduce__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_modules_es_array_reduce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_core_js_modules_es_array_reduce__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_modules_es_array_slice__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_modules_es_array_slice___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_core_js_modules_es_array_slice__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_modules_es_date_to_string__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_modules_es_date_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_core_js_modules_es_date_to_string__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_function_name__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_function_name___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_function_name__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_object_define_property__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_object_define_property___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_modules_es_object_define_property__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_object_to_string__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_object_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_modules_es_object_to_string__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_values__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_values___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_core_js_modules_es_object_values__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_regexp_exec__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_regexp_exec___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_core_js_modules_es_regexp_exec__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_regexp_to_string__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_regexp_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_core_js_modules_es_regexp_to_string__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_string_iterator__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_string_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_core_js_modules_es_string_iterator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_string_split__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_string_split___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_string_split__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_core_js_modules_web_dom_collections_iterator__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_core_js_modules_web_dom_collections_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_core_js_modules_web_dom_collections_iterator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__models_common__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_assert__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_assert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_assert__);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+/**
+ * Heavily inspired from https://pvigier.github.io/2019/08/04/quadtree-collision-detection.html 
+ * 
+ * @typedef {{
+ * intoRectangle(): Rectangle;
+ * move(change: import('../typedef').IPoint): void;
+ * }} IntoRectangle
+ */
+
+/**
+ * @enum { number }
+ */
+
+var Quadrant = {
+  NW: 0,
+  NE: 1,
+  SW: 2,
+  SE: 3
+};
+/** Maximum number of values a node can hold before split */
+
+var THRESHOLD = 16;
+/** Maximum quad tree depth */
+
+var MAX_DEPTH = 8;
+/**
+ * 
+ * @template {IntoRectangle} T
+ */
+
+var QuadTree = /*#__PURE__*/function () {
+  /**
+   * @param { Rectangle } area 
+   */
+  function QuadTree(area) {
+    _classCallCheck(this, QuadTree);
+
+    /** @type { Node<T> } */
+    this.mRoot = new Node(area);
+  }
+  /**
+   * @param { T } value
+   * @returns { void } 
+   */
+
+
+  _createClass(QuadTree, [{
+    key: "add",
+    value: function add(value) {
+      // assert(this.mRoot.mRectangle.includes(value.intoRectangle()), `Area: ${JSON.stringify(this.mRoot.mRectangle)}, Value: ${JSON.stringify(value.intoRectangle())}`);
+      this.mRoot.add(value, 0);
+    }
+    /**
+     * @param { T } value
+     */
+
+  }, {
+    key: "remove",
+    value: function remove(value) {
+      this.mRoot.remove(value);
+    }
+    /**
+     * @param { Rectangle } rectangle
+     */
+
+  }, {
+    key: "findCollisions",
+    value: function findCollisions(rectangle) {
+      /** @type { T[] } */
+      var collisions = [];
+      this.mRoot.findCollisions(rectangle, collisions);
+      return collisions;
+    }
+    /**
+     * @param { import('../typedef').IPoint } point 
+     */
+
+  }, {
+    key: "findCollisionsPoint",
+    value: function findCollisionsPoint(point) {
+      /** @type { T[] } */
+      var collisions = [];
+      this.mRoot.findCollisions(new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](point.x, point.y, point.x, point.y), collisions);
+      return collisions;
+    }
+    /**
+     * Moves the value if it is already in the area
+     * @param { T } value
+     * @param { import('../typedef').IPoint } change 
+     * @returns { boolean } true if moved
+     */
+
+  }, {
+    key: "move",
+    value: function move(value, change) {
+      // return this.mRoot.move(0, value, null, change);
+      this.mRoot.remove(value);
+      value.move(change);
+      this.mRoot.add(value, 0);
+      return true;
+    }
+  }, {
+    key: "depth",
+    get: function get() {
+      return this.mRoot.depth;
+    }
+  }, {
+    key: "root",
+    get: function get() {
+      return this.mRoot;
+    }
+  }]);
+
+  return QuadTree;
+}();
+/**
+ * 
+ * @template {IntoRectangle} T
+ */
+
+var Node = /*#__PURE__*/function () {
+  /**
+   * 
+   * @param { Rectangle } rectangle 
+   */
+  function Node(rectangle) {
+    _classCallCheck(this, Node);
+
+    this.mRectangle = rectangle;
+    /** @type { Node<T>[] } */
+
+    this.mChildren = [];
+    /** @type { T[] } */
+
+    this.mValues = [];
+  }
+  /**
+   * @param { T } value
+   * @param { number } depth
+   * @returns { void }
+   */
+
+
+  _createClass(Node, [{
+    key: "add",
+    value: function add(value, depth) {
+      // console.log(`Adding value ${JSON.stringify(value.intoRectangle())} into ${JSON.stringify(this.mRectangle)}`);
+      var boundingRectangle = value.intoRectangle(); // assert(this.mRectangle.includes(boundingRectangle), `Doesn't contain: this: ${JSON.stringify(this.mRectangle)}, value: ${JSON.stringify(boundingRectangle)}`);
+
+      if (this.isLeaf) {
+        if (depth >= MAX_DEPTH || this.mValues.length < THRESHOLD) {
+          this.mValues.push(value);
+        } else {
+          this.split();
+          this.add(value, depth);
+        }
+      } else {
+        var quad = this.getQuadrant(boundingRectangle);
+
+        if (quad !== null) {
+          this.getChild(quad).add(value, depth + 1);
+        } else {
+          this.mValues.push(value);
+        }
+      }
+    }
+    /**
+     * @param { T } value
+     * @param { Node<T>? } parent 
+     * @returns { void } 
+     */
+
+  }, {
+    key: "remove",
+    value: function remove(value) {
+      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var boundingRectangle = value.intoRectangle(); // assert(this.mRectangle.includes(boundingRectangle), `Doesn't contain: this: ${JSON.stringify(this.mRectangle)}, value: ${JSON.stringify(boundingRectangle)}`);
+
+      if (this.isLeaf) {
+        this.removeValue(value);
+
+        if (parent !== null) {
+          parent.tryMerge();
+        }
+      } else {
+        var quad = this.getQuadrant(boundingRectangle);
+
+        if (quad !== null) {
+          this.mChildren[quad].remove(value, this);
+        } else {
+          this.removeValue(value);
+        }
+      }
+    }
+    /**
+     * @param { T } value
+     * @returns { void } 
+     */
+
+  }, {
+    key: "removeValue",
+    value: function removeValue(value) {
+      var index = this.mValues.findIndex(function (v) {
+        return v === value;
+      });
+      __WEBPACK_IMPORTED_MODULE_22_assert___default()(index !== -1, "Value ".concat(value, " is not present in this node")); // Swap
+
+      {
+        var lastIndex = this.mValues.length - 1;
+        var temp = this.mValues[index];
+        this.mValues[index] = this.mValues[lastIndex];
+        this.mValues[lastIndex] = temp;
+      }
+      this.mValues.pop();
+    }
+    /**
+     * @returns { boolean }
+     */
+
+  }, {
+    key: "tryMerge",
+    value: function tryMerge() {
+      var totalValues = this.mValues.length;
+      var children = this.mChildren;
+
+      for (var i = 0; i < children.length; ++i) {
+        var child = children[i];
+
+        if (!child.isLeaf) {
+          return false;
+        } else {
+          totalValues += child.mValues.length;
+        }
+      }
+
+      if (totalValues <= THRESHOLD) {
+        for (var _i = 0; _i < children.length; ++_i) {
+          var _child = children[_i];
+
+          for (var j = 0; j < _child.mValues.length; ++j) {
+            this.mValues.push(_child.mValues[j]);
+          } // Clear the values
+
+
+          _child.mValues = [];
+        } // No children
+
+
+        this.mChildren = [];
+      }
+
+      return true;
+    }
+    /**
+     * Adds the all colliding rectangles into `collisions` array
+     * @param { Rectangle } rectangle
+     * @param { T[] } collisions
+     */
+
+  }, {
+    key: "findCollisions",
+    value: function findCollisions(rectangle, collisions) {
+      var values = this.mValues;
+
+      for (var i = 0; i < values.length; ++i) {
+        var value = values[i];
+
+        if (rectangle.intersects(value.intoRectangle())) {
+          collisions.push(value);
+        }
+      }
+
+      if (!this.isLeaf) {
+        var children = this.mChildren;
+
+        for (var _i2 = 0; _i2 < children.length; ++_i2) {
+          var child = children[_i2];
+
+          if (rectangle.intersects(child.mRectangle)) {
+            child.findCollisions(rectangle, collisions);
+          }
+        }
+      }
+    }
+  }, {
+    key: "getQuadrant",
+
+    /**
+     * @param { Rectangle } rectangle
+     * @returns { Quadrant | null } 
+     */
+    value: function getQuadrant(rectangle) {
+      var center = this.mRectangle.absoluteCenter; // console.log(`center: ${JSON.stringify(center)}`);
+
+      if (rectangle.x2 < center.x) {
+        if (rectangle.y2 < center.y) {
+          return Quadrant.NW;
+        } else if (rectangle.y1 >= center.y) {
+          return Quadrant.SW;
+        } else {
+          return null;
+        }
+      } else if (rectangle.x1 >= center.x) {
+        if (rectangle.y2 < center.y) {
+          return Quadrant.NE;
+        } else if (rectangle.y1 >= center.y) {
+          return Quadrant.SE;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    }
+    /**
+     * @returns { void }
+     */
+
+  }, {
+    key: "split",
+    value: function split() {
+      for (var i = 0; i < Node.CHILDREN_COUNT; i += 1) {
+        this.mChildren.push(new Node(this.getSubArea(i)));
+      }
+
+      var oldValues = this.mValues;
+      var newValues = [];
+
+      for (var _i3 = 0; _i3 < oldValues.length; ++_i3) {
+        var value = oldValues[_i3];
+        var quad = this.getQuadrant(value.intoRectangle());
+
+        if (quad !== null) {
+          this.mChildren[quad].mValues.push(value);
+        } else {
+          newValues.push(value);
+        }
+      }
+
+      this.mValues = newValues;
+    }
+    /**
+     * @param { Quadrant } quadrant
+     * @returns { Node<T> } 
+     */
+
+  }, {
+    key: "getChild",
+    value: function getChild(quadrant) {
+      if (quadrant in Object.values(Quadrant)) {
+        return this.mChildren[quadrant];
+      } else {
+        throw new Error("Invalid quadrant: ".concat(quadrant));
+      }
+    }
+    /**
+     * Returns a rectangle with 1 / 4 of the current node
+     * @param { Quadrant } quadrant the position of the subarea
+     * @returns { Rectangle } 
+     */
+
+  }, {
+    key: "getSubArea",
+    value: function getSubArea(quadrant) {
+      var center = this.mRectangle.absoluteCenter;
+
+      switch (quadrant) {
+        case Quadrant.NW:
+          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](this.mRectangle.x1, this.mRectangle.y1, center.x, center.y);
+
+        case Quadrant.NE:
+          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](center.x, this.mRectangle.y1, this.mRectangle.x2, center.y);
+
+        case Quadrant.SW:
+          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](this.mRectangle.x1, center.y, center.x, this.mRectangle.y2);
+
+        case Quadrant.SE:
+          return new __WEBPACK_IMPORTED_MODULE_21__models_common__["b" /* Rectangle */](center.x, center.y, this.mRectangle.x2, this.mRectangle.y2);
+
+        default:
+          throw new Error("Invalid subarea value: ".concat(quadrant));
+      }
+    }
+    /**
+     * Use only for debugging
+     * @param { number } depth
+     */
+
+  }, {
+    key: "print",
+    value: function print(depth) {
+      console.log("Node ".concat(JSON.stringify(this.mRectangle), " (Depth ").concat(depth, ")"));
+      console.log("Root values: ".concat(this.mValues));
+
+      var _iterator = _createForOfIteratorHelper(this.mChildren.entries()),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var _step$value = _slicedToArray(_step.value, 2),
+              i = _step$value[0],
+              child = _step$value[1];
+
+          console.log("Child ".concat(i));
+          child.print(depth + 1);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      console.log("End Node ".concat(JSON.stringify(this.mRectangle), "===================="));
+    }
+  }, {
+    key: "isLeaf",
+    get: function get() {
+      return this.mChildren.length === 0;
+    }
+    /**
+     * @returns { number }
+     */
+
+  }, {
+    key: "depth",
+    get: function get() {
+      if (this.isLeaf) {
+        return 1;
+      } else {
+        return this.mChildren.map(function (c) {
+          return c.depth;
+        }).reduce(function (maxDepth, depth) {
+          return Math.max(maxDepth, depth);
+        }, 0) + 1;
+      }
+    }
+  }]);
+
+  return Node;
+}();
+Node.CHILDREN_COUNT = Object.values(Quadrant).length;
+
+/***/ }),
 /* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8023,7 +7883,7 @@ module.exports = function (it) {
 
 "use strict";
 
-var charAt = __webpack_require__(105).charAt;
+var charAt = __webpack_require__(104).charAt;
 
 // `AdvanceStringIndex` abstract operation
 // https://tc39.github.io/ecma262/#sec-advancestringindex
@@ -8064,11 +7924,11 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
 
 var bind = __webpack_require__(38);
 var toObject = __webpack_require__(14);
-var callWithSafeIterationClosing = __webpack_require__(78);
-var isArrayIteratorMethod = __webpack_require__(93);
+var callWithSafeIterationClosing = __webpack_require__(77);
+var isArrayIteratorMethod = __webpack_require__(92);
 var toLength = __webpack_require__(9);
 var createProperty = __webpack_require__(48);
-var getIteratorMethod = __webpack_require__(88);
+var getIteratorMethod = __webpack_require__(87);
 
 // `Array.from` method implementation
 // https://tc39.github.io/ecma262/#sec-array.from
@@ -8169,7 +8029,7 @@ module.exports = !fails(function () {
 
 "use strict";
 
-var IteratorPrototype = __webpack_require__(95).IteratorPrototype;
+var IteratorPrototype = __webpack_require__(94).IteratorPrototype;
 var create = __webpack_require__(43);
 var createPropertyDescriptor = __webpack_require__(37);
 var setToStringTag = __webpack_require__(53);
@@ -8202,7 +8062,7 @@ module.exports = getBuiltIn('navigator', 'userAgent') || '';
 "use strict";
 
 // TODO: Remove from `core-js@4` since it's moved to entry points
-__webpack_require__(112);
+__webpack_require__(111);
 var redefine = __webpack_require__(12);
 var fails = __webpack_require__(1);
 var wellKnownSymbol = __webpack_require__(2);
@@ -8421,7 +8281,7 @@ module.exports = Math.sign || function sign(x) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
-var inspectSource = __webpack_require__(91);
+var inspectSource = __webpack_require__(90);
 
 var WeakMap = global.WeakMap;
 
@@ -8501,7 +8361,7 @@ module.exports = {
 "use strict";
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(69);
-var classof = __webpack_require__(80);
+var classof = __webpack_require__(79);
 
 // `Object.prototype.toString` method implementation
 // https://tc39.github.io/ecma262/#sec-object.prototype.tostring
@@ -8934,8 +8794,8 @@ addToUnscopables('flatMap');
 
 "use strict";
 
-var collection = __webpack_require__(82);
-var collectionStrong = __webpack_require__(81);
+var collection = __webpack_require__(81);
+var collectionStrong = __webpack_require__(80);
 
 // `Map` constructor
 // https://tc39.github.io/ecma262/#sec-map-objects
@@ -8964,7 +8824,7 @@ $({ target: 'Math', stat: true }, {
 
 var $ = __webpack_require__(0);
 var DESCRIPTORS = __webpack_require__(3);
-var defineProperties = __webpack_require__(96);
+var defineProperties = __webpack_require__(95);
 
 // `Object.defineProperties` method
 // https://tc39.github.io/ecma262/#sec-object.defineproperties
@@ -9001,7 +8861,7 @@ $({ target: 'Object', stat: true, forced: FORCED, sham: !DESCRIPTORS }, {
 
 var $ = __webpack_require__(0);
 var DESCRIPTORS = __webpack_require__(3);
-var ownKeys = __webpack_require__(101);
+var ownKeys = __webpack_require__(100);
 var toIndexedObject = __webpack_require__(13);
 var getOwnPropertyDescriptorModule = __webpack_require__(34);
 var createProperty = __webpack_require__(48);
@@ -9031,8 +8891,8 @@ $({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
 
 "use strict";
 
-var collection = __webpack_require__(82);
-var collectionStrong = __webpack_require__(81);
+var collection = __webpack_require__(81);
+var collectionStrong = __webpack_require__(80);
 
 // `Set` constructor
 // https://tc39.github.io/ecma262/#sec-set-objects

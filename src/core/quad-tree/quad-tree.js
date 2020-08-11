@@ -202,8 +202,10 @@ export class Node {
      */
     tryMerge() {
         let totalValues = this.mValues.length;
+        const children = this.mChildren;
 
-        for (let child of this.mChildren) {
+        for (let i = 0; i < children.length; ++i) {
+            let child = children[i];
             if (!child.isLeaf) {
                 return false;
             } else {
@@ -212,9 +214,10 @@ export class Node {
         }
      
         if (totalValues <= THRESHOLD) {
-            for (let child of this.mChildren) {
-                for (let value of child.mValues) {
-                    this.mValues.push(value);
+            for (let i = 0; i < children.length; ++i) {
+                let child = children[i];
+                for (let j = 0; j < child.mValues.length; ++j) {
+                    this.mValues.push(child.mValues[j]);
                 }
                 // Clear the values
                 child.mValues = [];
@@ -232,16 +235,19 @@ export class Node {
      * @param { T[] } collisions
      */
     findCollisions(rectangle, collisions) {
-        for (let value of this.mValues) {
+        const values = this.mValues;
+        for (let i = 0; i < values.length; ++i) {
+            let value = values[i];
             if (rectangle.intersects(value.intoRectangle())) {
-                // yield value;
                 collisions.push(value);
             }
         }
 
         if (!this.isLeaf) {
-            for (let child of this.mChildren) {
-                if (child.mRectangle.intersects(rectangle)) {
+            const children = this.mChildren;
+            for (let i = 0; i < children.length; ++i) {
+                let child = children[i];
+                if (rectangle.intersects(child.mRectangle)) {
                     child.findCollisions(rectangle, collisions);
                 }
             }
@@ -302,16 +308,20 @@ export class Node {
             this.mChildren.push(new Node(this.getSubArea(i)));
         }
 
+        const oldValues = this.mValues;
         let newValues = [];
-        for (let value of this.mValues) {
-            let quad = this.getQuadrant(value.intoRectangle());
 
+        for (let i = 0; i < oldValues.length; ++i) {
+            let value = oldValues[i];
+            let quad = this.getQuadrant(value.intoRectangle());
+    
             if (quad !== null) {
                 this.mChildren[quad].mValues.push(value);
             } else {
                 newValues.push(value);
             }
         }
+        
         this.mValues = newValues;
     }
 

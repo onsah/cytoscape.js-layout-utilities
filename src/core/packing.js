@@ -214,7 +214,6 @@ export function incrementalPackImpl(polyominos, gridStep) {
  */
 export function incrementalSinglePack(components, options) {
     let gridStep = calculateGridStep(components, options);
-    console.log(`gridStep: ${gridStep}`);
 
     if (options.componentSpacing > 0) {
       let spacingAmount = options.componentSpacing;
@@ -223,32 +222,33 @@ export function incrementalSinglePack(components, options) {
 
     let { polyominos } = createPolyominos(components, gridStep);
 
-  let compactionGrid = new CompactionGrid(polyominos, gridStep);
-  
-  let dir = Direction.LEFT;
+    let compactionGrid = new CompactionGrid(polyominos, gridStep);
+    
+    let dir = Direction.LEFT;
 
-  const func = () => {
-    dir += 1;
-    dir %= Object.values(Direction).length;
+    const func = () => {
+      dir += 1;
+      dir %= Object.values(Direction).length;
 
-    let didCompact = compactionGrid.tryCompact(dir);
+      let didCompact = compactionGrid.tryCompact(dir);
 
-    if (didCompact) {
-      let shifts = polyominos.map(p => ({
-          dx: (p.location.x - p.stepX1) * gridStep,
-          dy: (p.location.y - p.stepY1) * gridStep,
-        })
-      );
+      if (didCompact) {
+          let shifts = polyominos.map(p => ({
+                  dx: (p.location.x - p.stepX1) * gridStep,
+                  dy: (p.location.y - p.stepY1) * gridStep,
+              })
+          );
 
-      for (let [i, poly] of polyominos.entries()) {
-        poly.x1 += shifts[i].dx;
-        poly.y1 += shifts[i].dy;
+          for (let i = 0; i < polyominos.length; ++i) {
+              let poly = polyominos[i];
+              poly.x1 += shifts[i].dx;
+              poly.y1 += shifts[i].dy;
+          }
+
+          return { shifts };
+      } else {
+          return null;
       }
-
-      return { shifts };
-    } else {
-      return null;
-    }
   };
 
   return func;
@@ -261,10 +261,13 @@ export function incrementalSinglePack(components, options) {
  * @param { { dx: number, dy: number }[] } shifts
  */
 function calculatePackingCenter(components, shifts) {
-    for (let [index, component] of components.entries()) {
-        for (let node of component.nodes) {
-            node.x += shifts[index].dx;
-            node.y += shifts[index].dy;
+  
+    for (let i = 0; i < components.length; ++i) {
+        let component = components[i];
+        for (let j = 0; j < component.nodes.length; ++j) {
+            let node = component.nodes[j];
+            node.x += shifts[i].dx;
+            node.y += shifts[i].dy;
         }
     }
 
@@ -277,9 +280,10 @@ function calculatePackingCenter(components, shifts) {
  */
 function calculateGridStep(components, options) {
     let gridStep = 0;
-    
     let totalNodes = 0;
-    for (let component of components) {
+    
+    for (let i = 0; i < components.length; ++i) {
+        let component = components[i];
         totalNodes += component.nodes.length;
         gridStep += component.nodes.reduce(
             (gridStep, node) => gridStep + node.width + node.height, 0);
@@ -296,8 +300,10 @@ function calculateGridStep(components, options) {
  * @param { import('./typedef').Component[] } components
  */
 function addSpacing(components, spacingAmount) {
-    for (let component of components) {
-        for (let node of component.nodes) {
+    for (let i = 0; i < components.length; ++i) {
+        let component = components[i];
+        for (let j = 0; j < component.nodes.length; ++j) {
+            let node = component.nodes[j];
             node.x = node.x - spacingAmount;
             node.y = node.y - spacingAmount;
             node.width = node.width + (2 * spacingAmount);
@@ -316,23 +322,25 @@ function createPolyominos(components, gridStep) {
     let polyominos = [];
     let gridWidth = 0, gridHeight = 0;
 
-    for (let [index, component] of components.entries()) {
+    for (let i = 0; i < components.length; ++i) {
+        let component = components[i];
+        
         let boundingRect = getBoundingRectangle(component);
-
+    
         let componentWidth = boundingRect.width;
         let componentHeight = boundingRect.height;
-
+    
         gridWidth += componentWidth;
         gridHeight += componentHeight;
-
+    
         let componentPolyomino = new Polyomino(
           boundingRect.x1, boundingRect.y1, 
           componentWidth, 
           componentHeight, 
-          gridStep, index,
+          gridStep, i,
           { component, boundingRect }
         );
-
+    
         polyominos.push(componentPolyomino);
     }
 
