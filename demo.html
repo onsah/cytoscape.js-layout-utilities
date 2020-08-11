@@ -343,8 +343,9 @@
           subgraph.edges = [];
 
           component.edges().forEach(function (edge) {
-            var boundingBox = edge.boundingBox();
-            subgraph.edges.push({ startX: boundingBox.x1, startY: boundingBox.y1, endX: boundingBox.x2, endY: boundingBox.y2 });
+            let from = edge.sourceEndpoint();
+            let to = edge.targetEndpoint();
+            subgraph.edges.push({ startX: from.x, startY: from.y, endX: to.x, endY: to.y });
           });
           component.nodes().forEach(function (node) {
             var boundingBox = node.boundingBox();
