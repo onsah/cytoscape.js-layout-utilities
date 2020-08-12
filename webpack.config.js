@@ -25,15 +25,21 @@ let config = {
   externals: PROD ? Object.keys( pkg.dependencies || {} ) : [],
   plugins: MIN ? [
       new webpack.optimize.UglifyJsPlugin({
+        warnings: false,
         compress: {
-          warnings: false,
           drop_console: false,
         },
-        uglifyOptions: {
-          output: { comments: false }
-        }
+        comments: false,
       })
-    ] : []
+    ] : [
+      new webpack.optimize.UglifyJsPlugin({
+        warnings: "verbose",
+        compress: false,
+        comments: false,
+        beautify: true,
+        mangle: false,
+      })
+    ]
 };
 
 module.exports = config;
